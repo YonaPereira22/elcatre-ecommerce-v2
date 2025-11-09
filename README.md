@@ -9,4 +9,4 @@
 - Próximas fases: `backend/` (PHP/Node) y `db/` (SQL)
 
 ## Autores
-- Emiliano Urruti, Yonatan Pererira, Lucia Rodriguez (@usuario)
+- Emiliano Urruti, Yonatan Pererira, Lucia Rodriguez.
