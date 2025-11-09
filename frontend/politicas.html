@@ -5,16 +5,32 @@
   <title>Políticas — El Catre S.R.L</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .wrap{max-width:900px;margin:24px auto;padding:0 16px}
-    h1{color:#17468f}
-    h2{margin-top:20px}
-    ul{margin-top:6px}
-  </style>
 </head>
-<body>
-  <div class="wrap">
-    <h1>Políticas</h1>
+<body class="frame">
+
+  <header class="topbar">
+    <div class="container wrap">
+      <a class="brand" href="index.html">
+        <img src="img/logo-el-catre.jpg" alt="El Catre S.R.L">
+        <strong>El Catre S.R.L — Mueblería</strong>
+      </a>
+      <nav class="menu" id="main-menu">
+        <a href="index.html"        data-match="index.html">Inicio</a>
+        <a href="productos.html"    data-match="productos.html">Productos</a>
+        <a href="carrito.html"      data-match="carrito.html">Carrito</a>
+        <a href="contacto.html"     data-match="contacto.html">Contacto</a>
+        <a href="nosotros.html"     data-match="nosotros.html">Nosotros</a>
+        <a href="politicas.html"    data-match="politicas.html">Políticas</a>
+      </nav>
+      <div class="auth">
+        <a class="btn" href="login.html">Login</a>
+        <a class="btn white" href="register.html">Registrarse</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <h1>Políticas de la empresa El Catre S.R.L</h1>
 
     <h2>Envíos</h2>
     <ul>
@@ -41,7 +57,74 @@
     </ul>
 
     <h2>Privacidad</h2>
-    <p>Los datos se utilizan para gestionar compras y comunicaciones relacionadas al pedido. Podés solicitar acceso o eliminación de tus datos escribiendo a nuestro canal de contacto.</p>
-  </div>
+    <p>
+      <li>Los datos se utilizan para gestionar compras y comunicaciones relacionadas al pedido.
+      <li>Podés solicitar acceso o eliminación de tus datos escribiendo a nuestro canal de contacto.
+    </p>
+  </main>
+
+  <!-- Marca automáticamente el link activo -->
+  <script>
+    (function(){
+      const here = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('#main-menu a').forEach(a=>{
+        if(a.dataset.match === here) a.classList.add('active');
+      });
+    })();
+  </script>
+<script>
+document.addEventListener("DOMContentLoaded", async function() {
+  const authBox = document.getElementById('auth-box');
+  if (!authBox) return;
+
+  // --- Recuperar del almacenamiento local
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem('usuarioActual')) || null;
+  } catch(e) {
+    user = null;
+  }
+
+  // --- Verificar sesión con el backend
+  try {
+    const res = await fetch('http://localhost/Muebleria/backend/api.php?action=auth_me', {
+      credentials: 'include'
+    });
+    const data = await res.json();
+    if (data.authenticated && data.user) {
+      user = data.user;
+      localStorage.setItem('usuarioActual', JSON.stringify(user));
+    }
+  } catch(err) {
+    console.warn('No se pudo verificar la sesión con el backend', err);
+  }
+
+  // --- Mostrar según el estado
+  if (user) {
+    authBox.innerHTML = `
+      <span>👋 Hola, <strong>${user.nombre || user.email}</strong></span>
+      <button class="btn white" onclick="logout()">Cerrar sesión</button>
+    `;
+  } else {
+    authBox.innerHTML = `
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn white" href="register.html">Registrarse</a>
+    `;
+  }
+
+  // --- Cierre de sesión global
+  window.logout = async function() {
+    localStorage.removeItem('usuarioActual');
+    try {
+      await fetch('http://localhost/Muebleria/backend/api.php?action=auth_logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+    } catch(e) {}
+    location.href = 'login.html';
+  };
+});
+</script>
+
 </body>
 </html>

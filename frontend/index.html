@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
   <style>
-    :root{--azul:#17468f;--azul2:#0f3266;--blanco:#fff;--gris:#f3f5f7;--tx:#111}
+    :root{--azul:#17468f;--blanco:#fff;--gris:#f3f5f7;--tx:#111}
     body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f7f9ff 0%,#fff 100%);color:var(--tx)}
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:0 16px}
@@ -31,8 +31,7 @@
     .side h2{margin:0 0 6px;font-size:36px;color:var(--azul)}
     .pill{display:inline-flex;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;border:1px solid #dbe2ea;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.05);font-weight:600}
     .pill img{width:18px;height:18px}
-    .insta{color:#C13584}
-    .wa{color:#128C7E}
+    .insta{color:#C13584}.wa{color:#128C7E}
 
     /* TOOLS */
     .tools{background:var(--gris);padding:14px 0;border-top:1px solid #e7ebf0;border-bottom:1px solid #e7ebf0}
@@ -42,16 +41,82 @@
     .categorias button{padding:8px 12px;border-radius:8px;border:1px solid #dbe2ea;background:#fff;cursor:pointer}
     .categorias button.active{background:var(--azul);color:#fff;border-color:var(--azul)}
 
-    /* GRID */
+    /* GRID + CARDS */
     #contenedor-productos{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;padding:20px 0}
-    .producto{background:#fff;border:1px solid #e8edf3;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.05)}
-    .producto img{width:100%;height:170px;object-fit:cover}
-    .producto h3{font-size:16px;margin:10px 12px}
-    .producto .meta{display:flex;justify-content:space-between;align-items:center;margin:0 12px 12px}
-    .producto button{margin:0 12px 14px 12px;width:calc(100% - 24px)}
+    .producto{
+      background:#fff;border:1px solid #e8edf3;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.05);
+      display:flex;flex-direction:column;cursor:default;
+    }
+    .producto img{width:100%;height:170px;object-fit:cover;transition:height .18s ease}
+    .producto h3{font-size:18px;margin:10px 12px 6px;line-height:1.15;min-height:64px}
+
+    .producto .meta{margin:0 12px 12px} /* se reubica a details */
+
+    /* Precio alineado */
+    .precio{
+      margin:2px 12px 8px;font-weight:800;color:#0b1f42;text-align:center;
+      font-size:clamp(16px,2.1vw,18px);line-height:1.1;min-height:24px;display:flex;align-items:center;justify-content:center;
+    }
+
+    /* Botón Ver detalles invertido y discreto */
+    .ver-detalles{
+      display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid #dbe2ea;border-radius:10px;
+      background:#fff!important;color:var(--azul)!important;font-weight:700;font-size:.9rem;width:auto;margin:0;cursor:pointer;
+      box-shadow:0 1px 0 rgba(0,0,0,.02)
+    }
+    .ver-detalles:hover{background:#f3f5f7;border-color:#cbd5e1}
+    .ver-detalles:focus-visible{outline:2px solid rgba(23,70,143,.25);outline-offset:2px}
+    .ver-detalles:active{transform:translateY(1px)}
+
+    /* Details ocultos */
+    .producto .details{display:none;order:20;margin:8px 12px 10px;color:#475569;white-space:pre-line}
+    .desc-inline{white-space:pre-line;color:#475569;margin:0 0 8px 0}
+    .producto.expanded img{height:260px}
+    .producto.expanded .details{display:block}
+
+    /* Acciones ancladas al fondo */
+    .acciones{margin:12px;margin-top:auto;display:flex;flex-direction:column;gap:8px;align-items:center}
+    .acciones .btn-cart{width:100%;padding:12px 14px;border-radius:10px;font-weight:700;line-height:1;white-space:nowrap}
+
     footer{background:#0b1f42;color:#cfe1ff;padding:24px 0;margin-top:16px}
     footer a{color:#cfe1ff;text-decoration:underline}
     #notificacion{position:fixed;right:16px;bottom:16px;background:#111;color:#fff;padding:10px 14px;border-radius:10px;display:none}
+
+    /* Modal editor */
+    .modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:1200}
+    .modal{background:#fff;max-width:720px;width:94vw;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden}
+    .modal header{padding:12px 16px;background:#17468f;color:#fff;font-weight:700}
+    .modal .body{padding:14px 16px;display:grid;gap:10px}
+    /* ✅ Permitir scroll dentro del modal cuando el contenido es alto */
+    .modal {
+      max-height: 90vh;       /* ocupa hasta el 90% del aslto de la pantalla */
+      overflow-y: auto;       /* agrega barra de scroll si es necesario */
+    }
+
+    .modal .body {
+      max-height: calc(90vh - 60px); /* evita que se salga del modal */
+      overflow-y: auto;
+    }
+
+    .grid2{display:grid;grid-template-columns:1fr 180px;gap:10px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field input,.field select,.field textarea{padding:10px;border:1px solid #cbd5e1;border-radius:8px}
+    .field textarea{min-height:120px}
+    .imgrow{display:flex;gap:12px;align-items:flex-start}
+    .imgrow img{width:120px;height:120px;object-fit:cover;border:1px solid #e5e7eb;border-radius:8px}
+    #ed-preview {
+      display: block;
+      max-width: 120px;
+      max-height: 120px;
+      object-fit: cover;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }    
+    .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+    .danger{background:#dc2626;color:#fff;border:0}
+    .secondary{background:#475569;color:#fff;border:0}
+    .primary{background:#17468f;color:#fff;border:0}
     @media (max-width:900px){.hero{grid-template-columns:1fr}}
   </style>
 </head>
@@ -61,13 +126,12 @@
   <div class="container wrap">
     <a class="brand" href="index.html">
       <img src="img/logo-el-catre.jpg" alt="El Catre S.R.L">
-      <strong>El Catre — Mueblería</strong>
+      <strong>El Catre S.R.L</strong>
     </a>
     <nav class="menu">
       <a href="index.html">Inicio</a>
       <a href="#catalogo">Productos</a>
       <a href="carrito.html">Carrito</a>
-      <a href="https://wa.me/59844645043" target="_blank" rel="noopener">Contacto</a>
       <a href="nosotros.html">Nosotros</a>
       <a href="politicas.html">Políticas</a>
     </nav>
@@ -84,7 +148,7 @@
     <h2>Mueblería</h2>
     <div class="pill wa">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="">
-      <a href="https://wa.me/59844645043" target="_blank" rel="noopener">WhatsApp: 4464-5043</a>
+      <a href="https://wa.me/59844645043" target="_blank" rel="noopener">WhatsApp</a>
     </div>
     <div class="pill insta">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="">
@@ -115,45 +179,551 @@
 
 <div id="notificacion"></div>
 
+<!-- ====== App base (auth + buscador) ====== -->
 <script>
   const API = '../backend/api.php';
+  let isAdmin = false;
+  let productosCache = [];
+
+  // 👇 NUEVO: mapa slug -> id de categoría en la BD
+  let categoriasMap = {};
+
+  async function cargarCategoriasBD(){
+    try{
+      const r = await fetch(API + '?action=list_categorias');
+      const cats = await r.json(); // [{id,nombre,slug}, ...]
+      categoriasMap = {};
+      cats.forEach(c => { categoriasMap[c.slug] = c.id; });
+      // console.log('Categorias BD:', categoriasMap);
+    }catch(e){
+      console.error('No se pudieron cargar las categorías de la BD', e);
+    }
+  }
 
   async function pintarAuth(){
     try{
       const r = await fetch(API+'?action=auth_me',{credentials:'include'});
       const j = await r.json();
       const box = document.getElementById('auth-box');
+      const editBtn = document.getElementById('edit-toggle');
       if(j.authenticated){
+        const nombre = (j.user?.nombre || j.user?.usuario || '').trim();
+        isAdmin = (nombre === 'Admin_ElCatre');
         box.innerHTML = `
-          <span>Hola, <strong>${j.user.nombre}</strong></span>
+          <span>Hola, <strong>${nombre || 'usuario'}</strong></span>
           <button class="btn" id="btn-logout">Cerrar sesión</button>
         `;
-        document.getElementById('btn-logout').onclick = async ()=>{
-          await fetch(API,{method:'POST',body:new URLSearchParams({action:'auth_logout'}),credentials:'include'});
+        document.getElementById('btn-logout').onclick = async ()=> {
+          await fetch(API,{
+            method:'POST',
+            body:new URLSearchParams({action:'auth_logout'}),
+            credentials:'include'
+          });
           location.reload();
         };
       }else{
-        box.innerHTML = `<a class="btn" href="login.html">Login</a>
-                         <a class="btn white" href="register.html">Registrarse</a>`;
+        isAdmin = false;
+        box.innerHTML = `
+          <a class="btn" href="login.html">Login</a>
+          <a class="btn white" href="register.html">Registrarse</a>`;
+      }
+      editBtn.style.display = isAdmin ? 'flex' : 'none';
+      if(!isAdmin){
+        window.editMode = false;
+        document.getElementById('edit-tools').style.display = 'none';
+        document.getElementById('edit-modal-mask').style.display = 'none';
       }
     }catch(_){}
   }
 
-  // Integración con tu data.js (cachear productos para el buscador)
-  let productosCache = [];
-  const _renderCatalogo = window.renderCatalogo;
-  window.renderCatalogo = function(productos, q='', cat='todos'){ productosCache=productos; return _renderCatalogo(productos,q,cat); };
-
   document.addEventListener('DOMContentLoaded', ()=>{
     pintarAuth();
+    cargarCategoriasBD(); // 👈 MUY IMPORTANTE
     const q = document.getElementById('buscador');
-    if(q){ q.addEventListener('input', ()=>{
-      const active = document.querySelector('.categorias button.active')?.getAttribute('data-cat') || 'todos';
-      renderCatalogo(productosCache || [], q.value, active);
-    });}
+    if(q){
+      q.addEventListener('input', ()=>{
+        const active = document.querySelector('.categorias button.active')?.getAttribute('data-cat') || 'todos';
+        if(typeof renderCatalogo === 'function' && productosCache.length){
+          renderCatalogo(productosCache, q.value, active);
+        }
+      });
+    }
   });
 </script>
 
+
+<!-- Tu catálogo/render original -->
 <script src="data.js"></script>
+
+<!-- ====== UI admin (botón y herramientas flotantes) ====== -->
+<button id="edit-toggle"
+        title="Modo edición (E)"
+        style="position:fixed;right:16px;bottom:16px;z-index:1200;display:none;align-items:center;gap:6px;padding:10px 12px;border:0;border-radius:12px;background:#17468f;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer">
+  ✏️ Editar
+</button>
+<div id="edit-tools" style="position:fixed;right:16px;bottom:64px;z-index:1199;display:none;gap:8px">
+  <button id="export-overrides" class="btn" style="background:#0f3266">Exportar JSON</button>
+  <label class="btn" style="background:#0f3266;cursor:pointer">
+    Importar JSON
+    <input id="import-overrides" type="file" accept="application/json" style="display:none">
+  </label>
+  <button id="new-product" class="btn white" style="color:#17468f">+ Nuevo</button>
+</div>
+
+<!-- ====== Modal edición ====== -->
+<div id="edit-modal-mask" class="modal-mask">
+  <div class="modal">
+    <header>Editar producto</header>
+    <div class="body">
+      <div class="grid2">
+        <div class="field">
+          <label>Nombre</label>
+          <input id="ed-nombre" placeholder="Nombre del producto">
+        </div>
+        <div class="field">
+          <label>Precio (UYU)</label>
+          <input id="ed-precio" type="number" min="0" step="1" placeholder="0">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Categoría</label>
+          <select id="ed-cat"></select>
+        </div>
+        <div class="field">
+          <label>Imagen (URL)</label>
+          <input id="ed-img" placeholder="img/archivo.jpg o https://...">
+        </div>
+      </div>
+
+      <div class="imgrow">
+        <button id="ed-upload" class="btn white" style="color:#17468f">Subir archivo</button>
+        <input id="ed-file" type="file" accept="image/*" style="display:none">
+        <small style="color:#475569">Pegá una URL o subí una imagen (se guarda localmente en esta página).</small>
+      </div>
+      <img id="ed-preview" src="" alt="" />
+
+      <div class="field">
+        <label>Descripción</label>
+        <textarea id="ed-desc" placeholder="- Item A\n- Item B"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Stock</label>
+        <select id="ed-stock">
+          <option value="true">✔ Con stock</option>
+          <option value="false">❌ Sin stock</option>
+        </select>
+      </div>
+
+
+      <div class="actions">
+        <button id="ed-delete" class="danger">Eliminar</button>
+        <button id="ed-cancel" class="secondary">Cancelar</button>
+        <button id="ed-save" class="primary">Guardar</button>
+      </div>
+
+      <input type="hidden" id="ed-id">
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================== OVERRIDES + EXPANDIBLES + ADMIN ================== */
+(() => {
+  const $ = s => document.querySelector(s);
+
+  // Estado global
+  window.editMode = false;
+  let overrides = (()=>{ try{ return JSON.parse(localStorage.getItem('overrides')||'{}')||{}; }catch(_){ return {}; } })();
+
+  // Productos agregados por el admin (lista completa de objetos)
+  let added = (()=>{ try{ return JSON.parse(localStorage.getItem('added_products')||'[]')||[]; }catch(_){ return []; } })();
+
+  // Utilidades
+  function activeCat(){ return document.querySelector('.categorias button.active')?.getAttribute('data-cat') || 'todos'; }
+  function searchQ(){ return document.getElementById('buscador')?.value || ''; }
+  function saveLocal(){ localStorage.setItem('overrides', JSON.stringify(overrides)); localStorage.setItem('added_products', JSON.stringify(added)); }
+
+  // Aplicar overrides y extras
+  function withOverridesAndExtras(base){
+    // quitar eliminados y aplicar edits
+    const map = {};
+    base.forEach(p=>{
+      const ov = overrides[p.id];
+      if(ov?.__deleted) return; // soft delete
+      map[p.id] = ov ? ({...p, ...ov}) : p;
+    });
+    // Agregar nuevos (id negativos)
+    added.forEach(p=>{
+      const ov = overrides[p.id];
+      if(ov?.__deleted) return;
+      map[p.id] = ov ? ({...p, ...ov}) : p;
+    });
+    return Object.values(map);
+  }
+
+  // Construye/actualiza las cards (precio, details, acciones, botón “ver detalles”)
+  function makeExpandable(productosMostrados){
+    const cards = Array.from(document.querySelectorAll('#contenedor-productos .producto'));
+
+    cards.forEach((card, i)=>{
+      const p = productosMostrados[i];
+      if(!p) return;
+
+      const h3 = card.querySelector('h3');
+      const meta = card.querySelector('.meta');
+
+      // Precio visible (limpiar instancias previas)
+      card.querySelectorAll('.precio').forEach(n=>n.remove());
+      let priceText = '';
+      if (typeof p.precio !== 'undefined' && p.precio !== null && p.precio !== '') {
+        // Si el render original no trae <strong>, usamos p.precio
+        priceText = isNaN(p.precio) ? String(p.precio) : ('UYU ' + Number(p.precio).toLocaleString('es-UY'));
+      } else if(meta){
+        const strong = meta.querySelector('strong');
+        priceText = (strong ? strong.textContent : meta.textContent || '').trim();
+      }
+      if(priceText){
+        const pr = document.createElement('div');
+        pr.className = 'precio';
+        pr.textContent = priceText;
+        (h3 || card).insertAdjacentElement('afterend', pr);
+      }
+
+      // Descripción en details
+      let descNode = card.querySelector('.desc-inline');
+      if(p.descripcion){
+        if(!descNode){
+          descNode = document.createElement('p');
+          descNode.className = 'desc-inline';
+          card.appendChild(descNode);
+        }
+        descNode.textContent = p.descripcion;
+      }
+      let details = card.querySelector('.details');
+      if(!details){
+        details = document.createElement('div');
+        details.className = 'details';
+        card.appendChild(details);
+      }
+      details.innerHTML = '';
+      if(descNode) details.appendChild(descNode);
+      if(meta) meta.remove(); // no repetir el meta original
+
+      // Acciones (ancladas)
+      let acciones = card.querySelector('.acciones');
+      if(!acciones){
+        acciones = document.createElement('div');
+        acciones.className = 'acciones';
+        card.appendChild(acciones);
+      }
+      acciones.innerHTML = '';
+
+      // Botón Ver detalles con emoji persistente
+      const toggleLink = document.createElement('button');
+      toggleLink.type = 'button';
+      toggleLink.className = 'ver-detalles';
+      toggleLink.innerHTML = `<span class="lbl">Ver detalles</span> <span class="i" aria-hidden="true">ℹ️</span>`;
+      toggleLink.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const open = card.classList.toggle('expanded');
+        toggleLink.querySelector('.lbl').textContent = open ? 'Ocultar detalles' : 'Ver detalles';
+      });
+
+      // Agregar al carrito (el botón ya lo pinta data.js)
+      let cartBtn = Array.from(card.querySelectorAll('button'))
+        .find(b => !b.classList.contains('ver-detalles') && !b.closest('.acciones'));
+      if(cartBtn){
+        cartBtn.classList.add('btn-cart');
+        cartBtn.addEventListener('click', e => e.stopPropagation());
+        acciones.append(toggleLink, cartBtn);
+      }else{
+        acciones.append(toggleLink);
+      }
+
+      // En modo edición, botón Editar en el título
+      if(window.editMode && isAdmin && h3 && !card.querySelector('.btn-edit-inline')){
+        const btn = document.createElement('button');
+        btn.className = 'btn-edit-inline';
+        btn.textContent = 'Editar';
+        btn.style = 'background:#334155;color:#fff;border:0;border-radius:8px;padding:6px 8px;font-size:.85rem;margin-left:8px;cursor:pointer';
+        btn.onclick = ()=> openEditor(p);
+        h3.style.display='flex'; h3.style.justifyContent='space-between'; h3.style.alignItems='center';
+        h3.appendChild(btn);
+      }
+    });
+  }
+
+  /* ---------- Modal editor ---------- */
+  const mask = $('#edit-modal-mask');
+  const edId = $('#ed-id'), edNombre = $('#ed-nombre'), edCat = $('#ed-cat'),
+        edPrecio = $('#ed-precio'), edImg = $('#ed-img'), edDesc = $('#ed-desc'),
+        edPreview = $('#ed-preview'), edFile = $('#ed-file'),
+        edStock = $('#ed-stock');
+
+  // Poblar categorías
+  function fillCats(){
+    edCat.innerHTML = (window.CATEGORIAS||[]).map(c => `<option value="${c.key}">${c.nombre}</option>`).join('') ||
+      `<option value="comedor">Comedor</option><option value="living">Living</option>
+       <option value="cocina">Cocina</option><option value="baño">Baño</option>
+       <option value="dormitorio">Dormitorio</option><option value="oficina">Oficina</option>
+       <option value="electrodomesticos">Electrodomésticos</option>`;
+  }
+
+  function openEditor(p){
+    if(!isAdmin) return;
+    fillCats();
+    edId.value = p.id;
+    edNombre.value = p.nombre || '';
+    edCat.value = p.categoria || (CATEGORIAS?.[0]?.key || 'comedor');
+    edPrecio.value = (p.precio ?? '').toString();
+    edImg.value = p.imagen || '';
+    edPreview.src = p.imagen || '';
+    edDesc.value = p.descripcion || '';
+    edStock.value = (p.stock === false) ? 'false' : 'true';
+    mask.style.display = 'flex';
+  }
+  function closeEditor(){
+    mask.style.display = 'none';
+  }
+
+  // Subida de archivo local → objectURL en el campo imagen
+  $('#ed-upload').addEventListener('click', ()=> edFile.click());
+  edFile.addEventListener('change', e=>{
+    const file = e.target.files?.[0];
+    if(!file) return;
+    const url = URL.createObjectURL(file);
+    edImg.value = url;
+    edPreview.src = url;
+  });
+  $('#ed-cancel').addEventListener('click', closeEditor);
+
+// GUARDAR producto realmente en la BD
+$('#ed-save').addEventListener('click', async () => {
+  if (!isAdmin) return;
+
+  const idRaw = edId.value;
+  const id = idRaw ? parseInt(idRaw, 10) : null;
+
+  const nombre = edNombre.value.trim();
+  const slugCategoria = edCat.value; // ej: "comedor", "living", etc.
+  const precio = edPrecio.value !== '' ? Number(edPrecio.value) : 0;
+  const imagen = edImg.value.trim();
+  const descripcion = edDesc.value.trim();
+  const stock = (edStock.value === 'true') ? 1 : 0;
+
+  if (!nombre) {
+    alert('Falta el nombre');
+    return;
+  }
+
+  // 👇 Obtenemos categoria_id real desde la BD
+  const categoria_id = categoriasMap[slugCategoria] || null;
+  if (!categoria_id) {
+    alert('No se encontró la categoría en la BD. Revisá la tabla categorias.');
+    return;
+  }
+
+  const payload = {
+    id,                // null = nuevo, número = editar
+    nombre,
+    categoria_id,
+    precio,
+    imagen,
+    descripcion,
+    stock
+  };
+
+  try {
+    const res = await fetch(API + '?action=admin_save_product', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(payload)
+    });
+
+    const j = await res.json();
+    if (!res.ok || (!j.success && !j.ok)) {
+      alert('❌ Error al guardar: ' + (j.error || 'desconocido'));
+      console.error('Respuesta:', j);
+      return;
+    }
+
+    alert('✅ Producto guardado en la base de datos');
+    closeEditor();
+    // Lo más simple: recargamos para volver a pedir productos
+    location.reload();
+  } catch (e) {
+    console.error(e);
+    alert('❌ No se pudo guardar (error de red)');
+  }
+});
+
+
+
+
+
+  // Eliminar (soft delete si viene de base; remove si es agregado)
+  $('#ed-delete').addEventListener('click', async ()=>{
+  if(!isAdmin) return;
+  const id = parseInt(edId.value, 10);
+  if(!confirm('¿Eliminar este producto definitivamente?')) return;
+
+  try {
+    const formData = new FormData();
+    formData.append('id', id);
+    const res = await fetch('../backend/api.php?action=admin_delete_product', {
+      method: 'POST',
+      body: formData,
+      credentials: 'include'
+    });
+    const j = await res.json();
+    if(j.ok){
+      alert('🗑️ Producto eliminado');
+      closeEditor();
+      location.reload();
+    } else {
+      alert('❌ Error al eliminar: ' + (j.error || 'desconocido'));
+    }
+  } catch(e){
+    console.error(e);
+    alert('❌ No se pudo eliminar el producto.');
+  }
+});
+
+
+  // Exportar/Importar
+  $('#export-overrides').addEventListener('click', ()=>{
+    if(!isAdmin) return;
+    const payload = {overrides, added};
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'overrides.json'; a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  $('#import-overrides').addEventListener('change', e=>{
+    if(!isAdmin) return;
+    const f = e.target.files?.[0]; if(!f) return;
+    const r = new FileReader();
+    r.onload = ()=>{
+      try{
+        const json = JSON.parse(r.result);
+        if(json && typeof json === 'object'){
+          overrides = json.overrides || json || {};
+          added = json.added || [];
+          saveLocal();
+          alert('Importado ✅');
+          renderCatalogo(productosCache, searchQ(), activeCat());
+        }else throw new Error('Formato inválido');
+      }catch(err){ alert('No se pudo importar: '+err.message); }
+    };
+    r.readAsText(f);
+  });
+
+  // NUEVO: crear producto en blanco (sin id) para guardar en la BD
+  $('#new-product').addEventListener('click', () => {
+    if (!isAdmin) return;
+    fillCats();
+    edId.value = ''; // 👈 sin id => insert nuevo en la BD
+    edNombre.value = 'Nuevo producto';
+    edCat.value = (window.CATEGORIAS?.[0]?.key || 'comedor');
+    edPrecio.value = '';
+    edImg.value = '';
+    edPreview.src = '';
+    edDesc.value = '';
+    edStock.value = 'true';
+    mask.style.display = 'flex';
+  });
+
+
+  // Toggle del modo edición (botón / tecla E)
+  const toggleBtn = document.getElementById('edit-toggle');
+  toggleBtn.addEventListener('click', ()=>{
+    if(!isAdmin) return;
+    window.editMode = !window.editMode;
+    document.getElementById('edit-tools').style.display = window.editMode ? 'flex' : 'none';
+    renderCatalogo(productosCache, searchQ(), activeCat());
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key.toLowerCase()==='e' && !e.altKey && !e.ctrlKey && !e.metaKey){
+      if(!isAdmin) return;
+      toggleBtn.click();
+    }
+    if(e.key==='Escape'){ closeEditor(); }
+  });
+
+  /* ---- Hook a data.js ---- */
+  const _orig = window.renderCatalogo;
+  window.renderCatalogo = function(productos, q='', cat='todos'){
+    productosCache = productos || productosCache;
+    const merged = withOverridesAndExtras(productosCache);
+
+    // Pasamos la lista combinada y dejamos que el render original pinte.
+    _orig(merged, q, cat);
+
+    // Después de pintar, montamos nuestra capa (precio, details, acciones...)
+    const mostrados = merged.filter(p =>
+      (cat==='todos' || p.categoria===cat) &&
+      p.nombre.toLowerCase().includes((q||'').toLowerCase())
+    );
+    makeExpandable(mostrados);
+  };
+
+  // Repintado inicial por si data.js se ejecutó antes del hook
+  (function forceFirstRepaint(){
+    let tries = 0;
+    const t = setInterval(()=>{
+      tries++;
+      if (Array.isArray(productosCache) && productosCache.length){
+        clearInterval(t);
+        renderCatalogo(productosCache, '', 'todos');
+      }else if(tries>50){ clearInterval(t); }
+    },100);
+  })();
+
+})();
+</script>
+
+
+<script>
+document.getElementById('btn-logout').addEventListener('click', async ()=>{
+  try {
+    await fetch('http://localhost/Muebleria/backend/api.php?action=auth_logout', {
+      method: 'POST',
+      credentials: 'include'
+    });
+    // Borramos datos del carrito y usuario
+    localStorage.clear();
+    // Redirigimos a la página de inicio de sesión
+    location.href = 'login.html';
+  } catch(e){
+    console.error('Error cerrando sesión:', e);
+  }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  const btn = document.getElementById('btn-logout');
+  if(btn){
+    btn.addEventListener('click', async ()=>{
+      try {
+        await fetch('http://localhost/Muebleria/backend/api.php?action=auth_logout', {
+          method: 'POST',
+          credentials: 'include'
+        });
+        localStorage.clear(); // Limpia carrito, usuario y datos temporales
+        location.href = 'login.html'; // Redirige al login
+      } catch(e){
+        console.error('Error cerrando sesión:', e);
+        alert('No se pudo cerrar sesión correctamente.');
+      }
+    });
+  }
+});
+</script>
+
 </body>
 </html>

@@ -5,6 +5,7 @@
   <title>Registrarse — El Catre S.R.L</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     .card{max-width:420px;margin:40px auto;background:#fff;padding:24px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
     .card h1{margin:0 0 12px}
@@ -19,40 +20,79 @@
 <body>
   <div class="card">
     <h1>Crear cuenta</h1>
-    <div class="form-group">
-      <label>Nombre</label>
-      <input id="nombre" placeholder="Tu nombre">
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input id="email" type="email" placeholder="tu@correo.com">
-    </div>
-    <div class="form-group">
-      <label>Contraseña</label>
-      <input id="password" type="password" placeholder="mínimo 6 caracteres">
-    </div>
-    <button class="btn" id="btn">Registrarme</button>
+    <form id="form-register">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input id="nombre" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input id="email" type="email" placeholder="tu@correo.com">
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input id="password" type="password" placeholder="mínimo 6 caracteres">
+      </div>
+
+      <!-- 🔒 reCAPTCHA -->
+      <div class="g-recaptcha" data-sitekey="6LfN3u8rAAAAAGi3f0lw8UFgxlgxyCgkB4ECnlZ3"></div>
+
+      <button class="btn" type="submit">Registrarme</button>
+    </form>
+
     <div class="msg" id="msg"></div>
     <a class="link" href="login.html">¿Ya tenés cuenta? Iniciar sesión</a>
   </div>
 
   <script>
-    const API = '../backend/api.php';
-    document.getElementById('btn').onclick = async ()=>{
-      const nombre = document.getElementById('nombre').value.trim();
-      const email  = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-      const msg = document.getElementById('msg');
-      msg.textContent = '';
-      try{
-        const body = new URLSearchParams({action:'auth_register', nombre, email, password});
-        const r = await fetch(API, {method:'POST', body});
-        const j = await r.json();
-        if(!r.ok){ msg.textContent = j.error || 'Error'; return; }
-        // OK -> ir al inicio
-        location.href = 'index.html';
-      }catch(e){ msg.textContent = 'Error de red'; }
-    };
+  const API = 'http://localhost/Muebleria/backend/api.php';
+
+  document.getElementById('form-register').onsubmit = async (e)=>{
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const email  = document.getElementById('email').value.trim();
+    const pass   = document.getElementById('password').value.trim();
+    const token  = grecaptcha.getResponse();
+    const msg = document.getElementById('msg');
+
+    if(!token){
+      msg.style.color='red';
+      msg.textContent='Por favor completá el reCAPTCHA.';
+      return;
+    }
+
+    try {
+      const body = new URLSearchParams({
+        action:'auth_register',
+        nombre,
+        email,
+        password: pass,
+        'g-recaptcha-response': token
+      });
+
+      const r = await fetch(API,{
+        method:'POST',
+        body,
+        credentials:'include'
+      });
+
+      const text = await r.text();
+      console.log('📦 Respuesta cruda:', text);
+      let j;
+      try{ j = JSON.parse(text);}catch{throw new Error('Respuesta no JSON');}
+
+      if(!r.ok) throw new Error(j.error || 'Error al registrar');
+
+      msg.style.color='green';
+      msg.textContent='✅ Registro exitoso. Redirigiendo...';
+      setTimeout(()=> location.href='login.html', 1500);
+    }catch(e){
+      msg.style.color='red';
+      msg.textContent=e.message || 'Error de red';
+      console.error(e);
+      grecaptcha.reset();
+    }
+  };
   </script>
 </body>
 </html>

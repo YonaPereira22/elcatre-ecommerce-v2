@@ -18,11 +18,3 @@ try {
   echo json_encode(['error' => 'DB connection failed', 'detail' => $e->getMessage()]);
   exit;
 }
-
-function json_out($data, $code=200){
-  http_response_code($code);
-  header('Content-Type: application/json; charset=utf-8');
-  header('Access-Control-Allow-Origin: *'); // para pruebas locales
-  echo json_encode($data);
-  exit;
-}

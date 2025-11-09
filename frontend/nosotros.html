@@ -5,32 +5,417 @@
   <title>Nosotros — El Catre S.R.L</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+
   <style>
-    .wrap{max-width:900px;margin:24px auto;padding:0 16px}
-    h1{color:#17468f}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
-  </style>
+  /* === Paleta y base === */
+  :root{--azul:#17468f;--blanco:#fff;--gris:#f3f5f7;--tx:#111}
+  body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg,#f7f9ff 0%,#fff 100%);
+    color:var(--tx);
+  }
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+  /* === HEADER === */
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:var(--azul);
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .topbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:10px 0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand img{height:34px;border-radius:6px}
+  .brand strong{font-size:18px;letter-spacing:.3px}
+  .menu{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .menu a{
+    padding:8px 10px;
+    border-radius:8px;
+    color:#fff;
+  }
+  .menu a:hover,
+  .menu a.active{
+    background:rgba(255,255,255,0.2);
+  }
+  .auth{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .btn{
+    padding:8px 12px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.5);
+    background:transparent;
+    color:#fff;
+    cursor:pointer;
+    font-weight:600;
+  }
+  .btn.white{
+    background:#fff;
+    color:var(--azul);
+    border-color:#fff;
+  }
+
+  /* === CONTENIDO === */
+  .content{
+    max-width:900px;
+    margin:30px auto;
+    padding:0 16px;
+  }
+  .content h1{
+    color:var(--azul);
+    text-align:center;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media(max-width:900px){
+    .grid{grid-template-columns:1fr}
+  }
+  .card{
+    background:#fff;
+    border:1px solid #e8edf3;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+    padding:16px;
+  }
+  .stars{display:flex;gap:6px;font-size:22px;cursor:pointer}
+  .stars .s{color:#ccc}
+  .stars .s.active{color:#f5b301}
+  .field{margin:10px 0}
+  input,textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #dbe2ea;
+    border-radius:8px;
+  }
+  textarea{min-height:100px;resize:vertical}
+  .op{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+  .op .it{border-bottom:1px dashed #eaeff0;padding-bottom:10px}
+  .muted{color:#666}
+</style>
+
+
 </head>
 <body>
-  <div class="wrap">
-    <h1>Nosotros</h1>
-    <p><strong>El Catre S.R.L</strong> es una barraca con base en Santa Clara de Olimar. Este sitio corresponde a la unidad de <strong>Mueblería</strong> y fue diseñado para ofrecer un catálogo claro, carrito y compra simple.</p>
 
-    <div class="grid">
-      <div>
-        <h3>Nuestro objetivo</h3>
-        <p>Vender online y ordenar la logística de armado/desarmado y envíos. En esta primera versión (MVP) ofrecemos catálogo, carrito/checkout y coordinación de entrega.</p>
-        <h3>Envíos y armado</h3>
-        <p>Envíos a todo el país con operadores terceros. <strong>Gratis</strong> dentro de Santa Clara de Olimar. El armado aplica a muebles y se realiza en la misma visita si es posible; si no, se coordina otra.</p>
-      </div>
-      <div>
-        <h3>Contacto</h3>
-        <p>Instagram: <a href="https://www.instagram.com/elcatre.srl" target="_blank">@elcatre.srl</a></p>
-        <p>Teléfono: 4464-5043</p>
-        <p>Ubicación: 25 de Agosto — Santa Clara de Olimar</p>
-      </div>
+<header class="topbar">
+  <div class="container wrap">
+    <a class="brand" href="index.html">
+      <img src="img/logo-el-catre.jpg" alt="El Catre S.R.L">
+      <strong>El Catre S.R.L</strong>
+    </a>
+    <nav class="menu">
+      <a href="index.html">Inicio</a>
+      <a href="#catalogo">Productos</a>
+      <a href="carrito.html">Carrito</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="politicas.html">Políticas</a>
+    </nav>
+    <div class="auth" id="auth-box">
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn white" href="register.html">Registrarse</a>
     </div>
   </div>
+</header>
+
+
+<!-- ======= Contenido principal ======= -->
+<main class="content">
+  <h1>Nosotros</h1>
+  <div class="grid">
+    <section class="card">
+      <h2>El Catre S.R.L — Mueblería</h2>
+      <div style="height:20px;"></div>  
+      <p>Somos una <strong>Mueblería</strong> El Catre S.R.L, con base en Santa Clara de Olimar. Nuestro objetivo es ofrecer un catálogo claro, carrito y compra simple, coordinando envíos en todo el país y servicio de armado dentro de Santa Clara.</p>
+      <div style="height:20px;"></div>
+      <p><strong>Contacto:</strong> WhatsApp 099 227 298 · Instagram <a href="https://www.instagram.com/elcatre.srl" target="_blank">@elcatre.srl</a></p>
+      <div style="height:20px;"></div>
+      <p><strong>Envíos:</strong> Gratis dentro de Santa Clara; resto del país con operadores terceros (según zona/volumen).</p>
+      <div style="height:20px;"></div>
+      <p><strong>Armado:</strong> Para muebles, en la misma entrega si es posible; si no, se coordina segunda visita.</p>
+      <div style="text-align:center; margin-top:16px;">
+      <img src="img/logo-el-catre.jpg" alt="Logo El Catre S.R.L" style="width:250px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+      </div>
+  
+    </section>
+
+    <!-- ========= Reseñas ========= -->
+    <section class="card">
+      <h2>Opiniones de nuestros clientes</h2>
+
+      <div class="field">
+        <label>Nombre</label>
+        <input id="rev-nombre" placeholder="Tu nombre">
+      </div>
+
+      <div class="field">
+        <label>Calificación</label>
+        <div class="stars" id="rev-stars" aria-label="Calificación de 1 a 5">
+          <span class="s" data-v="1">★</span>
+          <span class="s" data-v="2">★</span>
+          <span class="s" data-v="3">★</span>
+          <span class="s" data-v="4">★</span>
+          <span class="s" data-v="5">★</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Comentario</label>
+        <textarea id="rev-coment" placeholder="Dejá tu opinión (20–400 caracteres)"></textarea>
+      </div>
+
+      <button class="btn" id="rev-enviar">Enviar reseña</button>
+
+      <hr style="margin:16px 0">
+      <div class="op" id="rev-list"></div>
+    </section>
+  </div>
+</main>
+
+<!-- ======= Script de reseñas ======= -->
+
+
+<script>
+document.addEventListener("DOMContentLoaded", async function() {
+  const authBox = document.getElementById('auth-box');
+  if (!authBox) return;
+
+  // --- Recuperar del almacenamiento local
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem('usuarioActual')) || null;
+  } catch(e) {
+    user = null;
+  }
+
+  // --- Verificar sesión con el backend
+  try {
+    const res = await fetch('http://localhost/Muebleria/backend/api.php?action=auth_me', {
+      credentials: 'include'
+    });
+    const data = await res.json();
+    if (data.authenticated && data.user) {
+      user = data.user;
+      localStorage.setItem('usuarioActual', JSON.stringify(user));
+    }
+  } catch(err) {
+    console.warn('No se pudo verificar la sesión con el backend', err);
+  }
+
+  // --- Mostrar según el estado
+  if (user) {
+    authBox.innerHTML = `
+      <span>👋 Hola, <strong>${user.nombre || user.email}</strong></span>
+      <button class="btn white" onclick="logout()">Cerrar sesión</button>
+    `;
+  } else {
+    authBox.innerHTML = `
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn white" href="register.html">Registrarse</a>
+    `;
+  }
+
+  // --- Cierre de sesión global
+  window.logout = async function() {
+    localStorage.removeItem('usuarioActual');
+    try {
+      await fetch('http://localhost/Muebleria/backend/api.php?action=auth_logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+    } catch(e) {}
+    location.href = 'login.html';
+  };
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const LS_KEY = 'opiniones_elcatre';
+  let currentStars = 0;
+
+  // === Espera a que el login guarde usuarioActual en localStorage ===
+  async function getUsuarioActual() {
+    return new Promise(resolve => {
+      const check = () => {
+        try {
+          const usr = JSON.parse(localStorage.getItem('usuarioActual'));
+          if (usr && (usr.nombre || usr.email)) return resolve(usr);
+        } catch(e) {}
+        setTimeout(check, 200); // reintenta cada 0.2s hasta que el login cargue
+      };
+      check();
+    });
+  }
+
+  const usuario = await getUsuarioActual();
+  await loadReviews(); // 🔹 Esto carga las reseñas para todos los visitantes
+
+  // === Referencias del DOM ===
+  const nombreInput = document.getElementById('rev-nombre');
+  const comentarioInput = document.getElementById('rev-coment');
+  const enviarBtn = document.getElementById('rev-enviar');
+  const starsContainer = document.getElementById('rev-stars');
+
+  if (!nombreInput || !comentarioInput || !enviarBtn) return;
+
+  // 🔧 Asegurar visibilidad del botón
+  enviarBtn.style.display = "block";
+  enviarBtn.style.marginTop = "10px";
+  enviarBtn.style.width = "100%";
+  enviarBtn.style.background = "#17468f";
+  enviarBtn.style.color = "white";
+  enviarBtn.style.border = "none";
+  enviarBtn.style.borderRadius = "8px";
+  enviarBtn.style.padding = "10px";
+  enviarBtn.style.fontWeight = "600";
+  enviarBtn.style.cursor = "pointer";
+
+
+  // === Mostrar formulario según login ===
+  if (usuario && (usuario.nombre || usuario.email)) {
+    nombreInput.value = usuario.nombre || usuario.email;
+    nombreInput.disabled = true;
+    comentarioInput.disabled = false;
+    enviarBtn.disabled = false;
+    enviarBtn.style.opacity = "1";
+  } else {
+    nombreInput.placeholder = "Iniciá sesión para dejar una reseña";
+    nombreInput.disabled = true;
+    comentarioInput.disabled = true;
+    enviarBtn.disabled = true;
+    enviarBtn.style.opacity = "0.5";
+  }
+
+  // === Manejo de estrellas ===
+  if (starsContainer) {
+    starsContainer.addEventListener('click', e => {
+      if (e.target.classList.contains('s')) {
+        currentStars = Number(e.target.dataset.v);
+        paintStars(currentStars);
+      }
+    });
+  }
+
+  function paintStars(n) {
+    document.querySelectorAll('#rev-stars .s').forEach(el => {
+      el.classList.toggle('active', Number(el.dataset.v) <= n);
+    });
+  }
+
+  // === Enviar reseña (versión mejorada) ===
+const API = window.location.origin + "/Muebleria/backend/api.php";
+
+enviarBtn.addEventListener('click', async () => {
+  if (!usuario) {
+    alert("Debes iniciar sesión para dejar una reseña.");
+    return;
+  }
+
+  const nombre = nombreInput.value.trim();
+  const coment = comentarioInput.value.trim();
+
+  if (!nombre) return alert('Ingresá tu nombre');
+  if (currentStars < 1) return alert('Elegí una calificación');
+  if (coment.length < 10 || coment.length > 400)
+    return alert('El comentario debe tener entre 10 y 400 caracteres');
+
+  const data = {
+    nombre: nombre,
+    email: usuario.email || '',
+    estrellas: currentStars,
+    comentario: coment
+  };
+
+  try {
+    const res = await fetch(API + '?action=addReview', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      credentials: 'include'
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const json = await res.json();
+
+    if (json.ok) {
+      alert('✅ ¡Gracias por tu reseña!');
+      comentarioInput.value = '';
+      currentStars = 0;
+      paintStars(0);
+      //await loadReviews(); // refresca la lista
+    } else {
+      alert('Error: ' + (json.error || 'No se pudo guardar la reseña'));
+    }
+  } catch (err) {
+    console.error("Error al conectar con el servidor:", err);
+    alert('❌ Error al conectar con el servidor. Detalle: ' + err.message);
+  }
+});
+
+  
+  // === Cargar reseñas desde la base de datos ===
+async function loadReviews() {
+  const cont = document.getElementById('rev-list');
+  cont.innerHTML = '<span class="muted">Cargando reseñas...</span>';
+
+  try {
+    const res = await fetch('http://localhost/Muebleria/backend/api.php?action=getReviews');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (!Array.isArray(data) || data.length === 0) {
+      cont.innerHTML = '<span class="muted">Todavía no hay opiniones.</span>';
+      return;
+    }
+
+    cont.innerHTML = data.map(x => {
+      const estrellas = '★'.repeat(x.estrellas) + '☆'.repeat(5 - x.estrellas);
+      const fecha = new Date(x.fecha).toLocaleDateString('es-UY');
+      return `
+        <div class="it">
+          <div><strong>${x.nombre}</strong> — <span class="muted">${fecha}</span></div>
+          <div style="color:#f5b301;font-size:14px">${estrellas}</div>
+          <div>${x.comentario}</div>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    console.error('Error al cargar reseñas:', err);
+    cont.innerHTML = '<span class="muted">⚠️ No se pudieron cargar las reseñas.</span>';
+  }
+}
+
+
+// === Ejecutar al cargar la página ===
+await loadReviews();
+paintStars(0);
+
+});
+
+</script>
+
 </body>
 </html>

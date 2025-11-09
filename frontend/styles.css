@@ -9,13 +9,22 @@
   --muted:#64748b;
   --card:#ffffff;
   --shadow:0 2px 8px rgba(0,0,0,.08);
+
+  /* Color institucional usado por la topbar y marco */
+  --azul:#17468f;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
-body{background:linear-gradient(180deg,#f7f9ff 0%,#ffffff 100%);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+body{
+  background:linear-gradient(180deg,#f7f9ff 0%,#ffffff 100%);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.55;
+}
 
-/* =============== Header =============== */
+/* =============== Header (index legacy) =============== */
+/* Siguen tus clases existentes para el index */
 .site-header{
   background:linear-gradient(90deg,var(--brand-800),var(--brand-700));
   color:var(--text-on-brand);
@@ -29,7 +38,7 @@ body{background:linear-gradient(180deg,#f7f9ff 0%,#ffffff 100%);color:var(--text
 .main-nav a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:6px}
 .main-nav a[aria-current="page"], .main-nav a:hover{background:rgba(255,255,255,.12)}
 
-/* =============== Hero =============== */
+/* =============== Hero / Catálogo (index) =============== */
 .hero{max-width:1100px;margin:20px auto;display:grid;grid-template-columns:1.3fr 1fr;gap:16px;padding:0 12px}
 .hero-media,.hero-copy{background:var(--card);border-radius:12px;box-shadow:var(--shadow)}
 .hero-media{overflow:hidden}
@@ -38,17 +47,14 @@ body{background:linear-gradient(180deg,#f7f9ff 0%,#ffffff 100%);color:var(--text
 .hero h1{color:var(--brand-800);margin-bottom:8px}
 .tagline{color:var(--muted);margin-bottom:14px}
 
-/* Instagram button */
 .btn-ig{display:inline-flex;align-items:center;gap:8px;background:var(--brand-700);color:#fff;text-decoration:none;padding:10px 12px;border-radius:999px;box-shadow:var(--shadow);font-weight:600}
 .btn-ig:hover{filter:brightness(1.04)}
 .btn-ig.small{padding:8px 10px}
 .ig-icon{width:18px;height:18px;display:block}
 
-/* Toggle edición */
 .edit-toggle{display:flex;align-items:center;gap:8px;margin-top:10px;color:var(--muted)}
 .edit-hint{color:var(--muted)}
 
-/* =============== Filtros + Catálogo =============== */
 .filtros{max-width:1100px;margin:10px auto 0;padding:0 12px;text-align:center}
 .filtros input{padding:10px;border:1px solid #cbd5e1;border-radius:8px;width:min(320px,90%);margin-bottom:10px}
 .categorias{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
@@ -88,11 +94,103 @@ body{background:linear-gradient(180deg,#f7f9ff 0%,#ffffff 100%);color:var(--text
 .footer-brand{display:flex;align-items:center;gap:10px}
 .footer-brand img{width:36px;height:36px;object-fit:cover;border-radius:6px}
 
-/* =============== Notificación =============== */
-.notificacion{position:fixed;right:12px;bottom:12px;background:#0f172a;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
-
 /* =============== Responsive =============== */
 @media (max-width: 900px){
   .hero{grid-template-columns:1fr}
   .promo-video{max-height:300px}
+}
+
+/* ===================================================== */
+/* ======  LAYOUT UNIFICADO PARA PÁGINAS INTERNAS  ===== */
+/* ===================================================== */
+
+/* Marco azul SOLO cuando el body tenga class="frame" */
+html:has(body.frame){ background: var(--azul); }
+
+body.frame{
+  margin:10px;                                        /* marco visible */
+  background:linear-gradient(180deg,#f7f9ff 0%,#fff 100%);
+  color:#111;
+  min-height:calc(100vh - 20px);
+  box-sizing:border-box;
+  padding-bottom:56px;                                 /* aire inferior */
+}
+
+/* Topbar reutilizada (igual a la que usás en internas) */
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+.topbar{
+  position:sticky; top:0; z-index:40;
+  background:var(--azul); color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.topbar .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:10px 0;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{height:34px;border-radius:6px}
+.brand strong{font-size:18px;letter-spacing:.3px}
+.menu{display:flex;gap:10px;flex-wrap:wrap}
+.menu a{padding:8px 10px;border-radius:8px;color:#fff;text-decoration:none}
+.menu a:hover{background:rgba(255,255,255,.12)}
+.menu a.active{background:rgba(255,255,255,.18);font-weight:600}
+.auth{display:flex;gap:8px;align-items:center}
+.btn{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;cursor:pointer;font-weight:600}
+.btn.white{background:#fff;color:var(--azul);border-color:#fff}
+
+/* Contenedor estándar de páginas internas */
+.page-content,
+.wrap-content{
+  max-width:900px;
+  margin:28px auto 40px;
+  padding:0 16px 56px;
+  display:flow-root;           /* evita colapso de márgenes */
+}
+.page-content > :last-child,
+.wrap-content > :last-child{ margin-bottom:0; }
+
+.page-content h1, .page-content h2, .page-content h3,
+.wrap-content h1, .wrap-content h2, .wrap-content h3{
+  color:var(--azul);
+}
+/* Radios mejor alineados y con área clickeable */
+.radio-item{
+  /* antes estaba display:flex; */
+  display:grid;
+  grid-template-columns: 28px 1fr; /* columna chica para el radio */
+  align-items:center;              /* ← centra verticalmente */
+  gap:12px;
+  padding:12px;
+  cursor:pointer;
+}
+.radio-item input[type="radio"]{
+  margin:0;
+  width:18px; height:18px;         /* tamaño cómodo */
+  justify-self:center;             /* centra en su columna */
+  accent-color: var(--azul);       /* color institucional en navegadores modernos */
+}
+/* Feedback visual cuando está seleccionado */
+.radio-item:has(input:checked){
+  border-color: var(--borde);
+  box-shadow: 0 0 0 3px rgba(23,70,143,.08);
+  background:#f2f6ff;
+}
+.producto .details{display:none;margin:8px 12px 12px}
+.producto.expanded .details{display:block}
+.ver-detalles{display:inline-block;margin:0 12px 10px;font-size:.9rem;color:var(--azul);text-decoration:underline;background:transparent;border:0;padding:0;cursor:pointer}
+.desc-inline{color:#475569;margin:0 0 8px 0;white-space:pre-line}
+
+
+
+/* CONTROLA BOTón RESEÑAS*/
+
+#rev-enviar {
+  display: inline-block;
+  margin-top: 10px;
+  opacity: 1 !important;
+  cursor: pointer;
+}
+#rev-enviar:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
 }

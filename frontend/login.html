@@ -36,7 +36,7 @@
 
     <!-- GOOGLE BUTTON -->
     <div id="g_id_onload"
-         data-client_id="REEMPLAZA_AQUI_TU_CLIENT_ID.apps.googleusercontent.com"
+         data-client_id="458554697515-ltrv6o27ba9th2s4rusip0lu5m7qt4r4.apps.googleusercontent.com"
          data-callback="onGoogleCredential"
          data-auto_prompt="false">
     </div>
@@ -77,5 +77,31 @@
     }
     window.onGoogleCredential = onGoogleCredential;
   </script>
+  <script>
+  async function handleGoogleLogin(response) {
+    try {
+      const formData = new FormData();
+      formData.append('action', 'auth_google');
+      formData.append('id_token', response.credential);
+
+      const res = await fetch('../backend/api.php', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      });
+      const json = await res.json();
+
+      if (json.ok) {
+        alert('Sesión iniciada con Google ✅');
+        location.href = 'index.html';
+      } else {
+        alert('Error: ' + (json.error || 'Fallo al iniciar sesión'));
+      }
+    } catch (err) {
+      alert('Error de red: ' + err.message);
+    }
+  }
+  </script>
+
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -37,6 +38,92 @@
     .list{display:flex;flex-direction:column;gap:10px}
     .item{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #eaeff6;padding-bottom:8px}
     .item:last-child{border-bottom:0}
+
+    /* NUEVO: métodos de entrega */
+    .radio-list{display:grid;gap:8px;margin:10px 0}
+    .radio-item{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border:1px solid var(--borde);border-radius:10px;padding:10px}
+    .radio-item strong{display:block}
+    .fieldset{display:grid;gap:8px;margin:14px 0}
+    .fieldset.inline{grid-template-columns:1fr 1fr}
+    @media (max-width: 700px){ .fieldset.inline{grid-template-columns:1fr} }
+    .hidden{display:none !important}
+  
+    #metodos-pago {
+  background: #f4f7fb;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+}
+
+  #metodos-pago p {
+    font-weight: 600;
+    color: var(--azul);
+    margin-bottom: 10px;
+  }
+
+  #metodos-pago .btn {
+    margin: 5px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background .2s;
+  }
+
+  #metodos-pago .btn:hover {
+    background: #103469;
+  }
+
+  .modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.3);
+}
+.modal-content h2 {
+  text-align: center;
+  color: #17468f;
+  margin-bottom: 15px;
+}
+.modal-content input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.modal-content .acciones {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-secondary {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
   </style>
 </head>
 <body>
@@ -63,14 +150,15 @@
       <div class="body">
         <div id="msg" class="ok" style="display:none"></div>
 
+        <!-- Contacto -->
         <div class="row">
           <div>
             <label>Nombre y apellido</label>
-            <input id="nombre" placeholder="Ej: Juan Pérez">
+            <input id="nombre" placeholder="Ej: Juan Pérez" required>
           </div>
           <div>
             <label>Email</label>
-            <input id="email" type="email" placeholder="tu@correo.com">
+            <input id="email" type="email" placeholder="tu@correo.com" required>
           </div>
         </div>
 
@@ -94,6 +182,7 @@
           </div>
         </div>
 
+        <!-- Dirección base (se usa en SC y en interior si querés) -->
         <div class="row">
           <div>
             <label>Ciudad/Localidad</label>
@@ -114,15 +203,112 @@
             <label>Agenda preferida</label>
             <input id="agenda" type="date">
             <div class="muted">Coordinamos por email/WhatsApp la franja horaria</div>
-            <label class="chk"><input type="checkbox" id="retira_local"> Retiro en local/depo</label>
+            <!-- quitamos “retira_local” checkbox: ahora es un método -->
             <label class="chk"><input type="checkbox" id="factura_empresa"> Factura para empresa (RUT)</label>
             <input id="rut" placeholder="RUT (si corresponde)" style="margin-top:6px;display:none">
           </div>
         </div>
 
-        <label class="chk" style="margin-top:10px">
-          <input type="checkbox" id="acepto"> Acepto las <a href="politicas.html" target="_blank" style="margin-left:6px;color:#17468f">políticas</a>
-        </label>
+        <hr>
+
+        <!-- MÉTODO DE ENTREGA (NUEVO) -->
+        <h3 style="margin:0 0 8px">Método de entrega</h3>
+        <div class="radio-list" id="metodos">
+          <!-- 1) Armado SC -->
+          <label class="radio-item">
+            <input type="radio" name="metodo" value="armado_sc" required>
+            <div>
+              <strong>Armado en domicilio — Santa Clara</strong>
+              <span class="muted">Armado por personal en Santa Clara. Requiere dirección.</span>
+            </div>
+          </label>
+          <!-- 4) Envío gratis SC -->
+          <label class="radio-item">
+            <input type="radio" name="metodo" value="envio_gratis_sc" required>
+            <div>
+              <strong>Envío <u>gratis</u> — Santa Clara</strong>
+              <span class="muted">Franja horaria: 08–12 o 14–18. Requiere dirección.</span>
+            </div>
+          </label>
+          <!-- 2) Retiro local -->
+          <label class="radio-item">
+            <input type="radio" name="metodo" value="retiro_local" required>
+            <div>
+              <strong>Retiro en local</strong>
+              <span class="muted">Coordiná día y horario de retiro.</span>
+            </div>
+          </label>
+          <!-- 3) Interior -->
+          <label class="radio-item">
+            <input type="radio" name="metodo" value="envio_interior" required>
+            <div>
+              <strong>Envío Interior (DAC, Mirtrans, Nuñez)</strong>
+              <span class="muted">Despacho por empresa. Requiere datos del receptor y ciudad.</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- GRUPOS CONDICIONALES -->
+        <!-- Para SC (armado/envío gratis) -->
+        <div id="grp-direccion-sc" class="fieldset hidden">
+          <label for="direccion_sc">Dirección (Santa Clara de Olimar)</label>
+          <input type="text" id="direccion_sc" placeholder="Calle, número, esquina, referencias">
+        </div>
+
+        <!-- Franja para “envío gratis SC” -->
+        <div id="grp-franja" class="fieldset inline hidden">
+          <div>
+            <label for="franja">Franja horaria</label>
+            <select id="franja">
+              <option value="">Elegí…</option>
+              <option value="08-12">08:00 a 12:00</option>
+              <option value="14-18">14:00 a 18:00</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Retiro en local -->
+        <div id="grp-retiro" class="fieldset inline hidden">
+          <div>
+            <label for="retiro_fecha">Día de retiro</label>
+            <input type="date" id="retiro_fecha">
+          </div>
+          <div>
+            <label for="retiro_hora">Horario</label>
+            <input type="time" id="retiro_hora">
+          </div>
+        </div>
+
+        <!-- Envío interior -->
+        <div id="grp-interior" class="fieldset hidden">
+          <div class="row">
+            <div>
+              <label for="empresa">Empresa</label>
+              <select id="empresa">
+                <option value="">Elegí empresa</option>
+                <option>DAC</option>
+                <option>Mirtrans</option>
+                <option>Nuñez</option>
+                <option>Correo Uruguayo</option>
+
+              </select>
+            </div>
+            <div>
+              <label for="recibe">Nombre de quien recibe</label>
+              <input id="recibe" placeholder="Nombre y apellido">
+            </div>
+          </div>
+          <div>
+            <label for="ciudad_int">Ciudad (interior)</label>
+            <input id="ciudad_int" placeholder="Ciudad/Dpto.">
+          </div>
+        </div>
+
+        <label style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-weight:600">
+            <input type="checkbox" id="acepto">
+            <span>Acepto las <a href="politicas.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">políticas</a></span>
+          </label>
+
 
         <div style="margin-top:16px">
           <button class="btn" id="btn-pagar">Confirmar pedido</button>
@@ -135,14 +321,46 @@
       <h2>Resumen del carrito</h2>
       <div class="body">
         <div id="resumen"></div>
+        <div id="metodos-pago" style="margin-top:20px; text-align:center; display:none;"></div>
       </div>
     </aside>
+  
+   <!-- 🧾 Modal de pago con tarjeta -->
+  <div id="modal-tarjeta" class="modal">
+    <div class="modal-content">
+      <h2>Pago con tarjeta</h2>
+      <form id="form-tarjeta">
+        <label>Nombre del titular</label>
+        <input type="text" id="nombre-tarjeta" required placeholder="Ej: Juan Pérez">
+
+        <label>Número de tarjeta</label>
+        <input
+          type="text"
+          id="numero-tarjeta"
+          maxlength="19"               
+          placeholder="Ingrese los 16 dígitos"
+          required>
+
+        <label>Vencimiento</label>
+        <input type="text" id="vencimiento-tarjeta" maxlength="5" placeholder="MM/AA" required>
+
+        <label>CVV</label>
+        <input type="password" id="cvv-tarjeta" maxlength="3" placeholder="***" required>
+
+        <div class="acciones">
+          <button type="submit" class="btn">💳 Confirmar pago</button>
+          <button type="button" id="cerrar-modal" class="btn-secondary">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   </div>
 </main>
 
 <script>
-  const API = '../backend/api.php';
+  const API = 'http://localhost/Muebleria/backend/api.php';
+  let datosPedido = null;   // ← acá guardamos los datos hasta que se pague
 
   // Mostrar RUT si tildan "Factura empresa"
   document.addEventListener('change', (e)=>{
@@ -162,7 +380,7 @@
       document.getElementById('btn-pagar').disabled = true;
       return;
     }
-
+    
     const items = carrito.map(it => `
       <div class="item">
         <span>${it.nombre}</span>
@@ -181,68 +399,350 @@
 
   // Prefill básico si hay sesión (opcional)
   (async function prefill(){
-    try{
-      const r = await fetch(API+'?action=auth_me',{credentials:'include'});
-      const j = await r.json();
-      if(j.authenticated){
-        document.getElementById('nombre').value = j.user.nombre || '';
-        document.getElementById('email').value  = j.user.email  || '';
-      }
-    }catch(_){}
+  try{
+    const r = await fetch(API + '?action=auth_me', {
+      credentials:'include'
+    });
+    const j = await r.json();
+    if (j.authenticated && j.user) {
+      document.getElementById('nombre').value = j.user.nombre || '';
+      document.getElementById('email').value  = j.user.email  || '';
+    }
+  }catch(_){}
+})();
+
+
+  // ---------- NUEVO: condicionales de método de entrega ----------
+  (function initMetodo(){
+    const radios = document.querySelectorAll('input[name="metodo"]');
+    const grpDirSC   = document.getElementById('grp-direccion-sc');
+    const dirSC      = document.getElementById('direccion_sc');
+    const grpFranja  = document.getElementById('grp-franja');
+    const franja     = document.getElementById('franja');
+    const grpRetiro  = document.getElementById('grp-retiro');
+    const rFecha     = document.getElementById('retiro_fecha');
+    const rHora      = document.getElementById('retiro_hora');
+    const grpInt     = document.getElementById('grp-interior');
+    const empresa    = document.getElementById('empresa');
+    const recibe     = document.getElementById('recibe');
+    const ciudadInt  = document.getElementById('ciudad_int');
+
+    function show(el){ el.classList.remove('hidden'); }
+    function hide(el){ el.classList.add('hidden'); }
+    function setReq(el, v){ if(el) el.required = !!v; }
+
+    function apply(value){
+      [grpDirSC, grpFranja, grpRetiro, grpInt].forEach(hide);
+      [dirSC, franja, rFecha, rHora, empresa, recibe, ciudadInt].forEach(el=> setReq(el,false));
+
+      if(value==='armado_sc'){ show(grpDirSC); setReq(dirSC,true); }
+      if(value==='envio_gratis_sc'){ show(grpDirSC); show(grpFranja); setReq(dirSC,true); setReq(franja,true); }
+      if(value==='retiro_local'){ show(grpRetiro); setReq(rFecha,true); setReq(rHora,true); const today = new Date(); today.setHours(0,0,0,0); rFecha.min = today.toISOString().slice(0,10); }
+      if(value==='envio_interior'){ show(grpInt); setReq(empresa,true); setReq(recibe,true); setReq(ciudadInt,true); }
+    }
+    radios.forEach(r=>{ r.addEventListener('change', ()=> apply(r.value)); if(r.checked) apply(r.value); });
   })();
 
-  // Enviar pedido al backend
-  document.getElementById('btn-pagar').onclick = async ()=>{
-    const nombre = document.getElementById('nombre').value.trim();
-    const email  = document.getElementById('email').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
-    const departamento = document.getElementById('departamento').value.trim();
-    const ciudad = document.getElementById('ciudad').value.trim();
-    const direccion = document.getElementById('direccion').value.trim();
-    const referencias = document.getElementById('referencias').value.trim();
-    const agenda = document.getElementById('agenda').value;
-    const retira = document.getElementById('retira_local').checked;
-    const facturaEmpresa = document.getElementById('factura_empresa').checked;
-    const rut = document.getElementById('rut').value.trim();
-    const acepto = document.getElementById('acepto').checked;
+  // ✅ Envío del pedido y despliegue de opciones de pago (solo valida y guarda datos)
+  document.getElementById('btn-pagar').onclick = async () => {
+    const nombre        = document.getElementById('nombre').value.trim();
+    const email         = document.getElementById('email').value.trim();
+    const telefono      = document.getElementById('telefono').value.trim();
+    const departamento  = document.getElementById('departamento').value.trim();
+    const ciudad        = document.getElementById('ciudad').value.trim();
+    const direccion     = document.getElementById('direccion').value.trim();
+    const referencias   = document.getElementById('referencias').value.trim();
+    const agenda        = document.getElementById('agenda').value;
+    const facturaEmpresa= document.getElementById('factura_empresa').checked;
+    const rut           = document.getElementById('rut').value.trim();
+    const acepto        = document.getElementById('acepto').checked;
 
-    const msg = document.getElementById('msg'); msg.style.display='none'; msg.textContent='';
+    const metodo   = (document.querySelector('input[name="metodo"]:checked') || {}).value;
+    const dirSC    = document.getElementById('direccion_sc')?.value.trim() || '';
+    const franja   = document.getElementById('franja')?.value || '';
+    const rFecha   = document.getElementById('retiro_fecha')?.value || '';
+    const rHora    = document.getElementById('retiro_hora')?.value || '';
+    const empresa  = document.getElementById('empresa')?.value || '';
+    const recibe   = document.getElementById('recibe')?.value.trim() || '';
+    const ciudadInt= document.getElementById('ciudad_int')?.value.trim() || '';
 
-    if(!acepto){ alert('Debés aceptar las políticas'); return; }
-    if(!nombre || !email){ alert('Completá nombre y email'); return; }
+    const msg = document.getElementById('msg');
+    msg.style.display = 'none';
+    msg.textContent   = '';
 
-    // Compacto datos “extra” dentro de la dirección (sin tocar tu schema)
+    // ---- Validaciones que ya tenía ----
+    if (!acepto)            { alert('Debés aceptar las políticas'); return; }
+    if (!nombre || !email)  { alert('Completá nombre y email');    return; }
+    if (!metodo)            { alert('Elegí un método de entrega'); return; }
+
+    if (metodo === 'armado_sc'       && !dirSC)                       { alert('Ingresá la dirección para armado en Santa Clara.'); return; }
+    if (metodo === 'envio_gratis_sc' && (!dirSC || !franja))          { alert('Ingresá la dirección y franja horaria.');           return; }
+    if (metodo === 'retiro_local'    && (!rFecha || !rHora))          { alert('Elegí día y hora de retiro.');                      return; }
+    if (metodo === 'envio_interior'  && (!empresa || !recibe || !ciudadInt)) {
+      alert('Completá empresa, receptor y ciudad.');
+      return;
+    }
+
+    let metodoStr = '';
+    let extra     = '';
+    if (metodo === 'armado_sc') {
+      metodoStr = 'Armado en domicilio — Santa Clara';
+      extra     = `Dir SC: ${dirSC}`;
+    }
+    if (metodo === 'envio_gratis_sc') {
+      metodoStr = 'Envío gratis — Santa Clara';
+      extra     = `Dir SC: ${dirSC} — Franja: ${franja}`;
+    }
+    if (metodo === 'retiro_local') {
+      metodoStr = 'Retiro en local';
+      extra     = `Retiro: ${rFecha} ${rHora}`;
+    }
+    if (metodo === 'envio_interior') {
+      metodoStr = 'Envío interior';
+      extra     = `Empresa: ${empresa} — Recibe: ${recibe} — Ciudad: ${ciudadInt}`;
+    }
+
     const direccionExtendida =
       `${direccion} — ${ciudad}, ${departamento}` +
-      (referencias?` — Ref: ${referencias}`:'') +
-      (agenda?` — Agenda: ${agenda}`:'') +
-      (retira?` — Retira en local`:'') +
-      (facturaEmpresa && rut?` — RUT: ${rut}`:'');
+      (referencias ? ` — Ref: ${referencias}` : '') +
+      (agenda      ? ` — Agenda pref.: ${agenda}` : '') +
+      ` — [${metodoStr}] ${extra}`;
+
+    // En vez de crear el pedido acá, SOLO guardamos los datos
+    datosPedido = {
+      nombre,
+      email,
+      telefono,
+      direccion: direccionExtendida,
+      facturaEmpresa,
+      rut,
+      metodoEntrega: metodoStr
+    };
+
+    // Mensaje al usuario
+    msg.innerHTML = '<p>Datos verificados ✅. Ahora elegí un método de pago para finalizar la compra.</p>';
+    msg.style.display = 'block';
+
+    // Mostrar botones de pago (como ya hacías)
+    const pagos = document.getElementById('metodos-pago');
+    pagos.innerHTML = `
+      <p>Seleccioná tu método de pago:</p>
+      <button class="btn" onclick="pagoTarjeta()">💳 Tarjeta</button>
+      <button class="btn" onclick="pagoMP()">🔗 Mercado Pago</button>
+      <button class="btn" onclick="pagoTransferencia()">🏦 Transferencia</button>
+    `;
+    pagos.style.display = 'block';
+  };
+
+    // 🔁 Función que SÍ crea el pedido en el servidor (la usan las pasarelas)
+  async function crearPedidoEnServidor(metodoPagoTexto) {
+    if (!datosPedido) {
+      alert('Primero completá y confirmá los datos del pedido.');
+      return;
+    }
+
+    const { nombre, email, telefono, direccion } = datosPedido;
 
     const body = new URLSearchParams({
-      action:'pedido_crear',
-      nombre, email,
+      action   : 'pedido_crear',
+      nombre,
+      email,
       telefono,
-      direccion: direccionExtendida
+      direccion
     });
 
-    try{
-      const r = await fetch(API, {method:'POST', body, credentials:'include'});
-      const j = await r.json();
-      if(!r.ok){ alert(j.error || 'No pudimos confirmar el pedido'); return; }
+    try {
+      // 1) sincronizar carrito local → backend (como ya hacías)
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      await fetch(API + '?action=carrito_sync', {
+        method     : 'POST',
+        credentials: 'include',
+        headers    : { 'Content-Type': 'application/json' },
+        body       : JSON.stringify(carrito)
+      });
 
-      // Vaciar carrito local para mantener coherencia con backend
+      // 2) crear pedido
+      const r    = await fetch(API, { method:'POST', body, credentials:'include' });
+      const text = await r.text();
+      let j;
+      try { j = JSON.parse(text); }
+      catch { throw new Error('Respuesta no JSON: ' + text); }
+
+      if (!r.ok) {
+        alert(j.error || 'No pudimos confirmar el pedido');
+        return;
+      }
+
+      const msg = document.getElementById('msg');
+      msg.innerHTML = `<p>✅ Pedido #${j.pedido_id} confirmado.<br> Método de pago: ${metodoPagoTexto}.</p>`;
+      msg.style.display = 'block';
+
+      // limpiar carrito
       localStorage.removeItem('carrito');
-      localStorage.setItem('total','0');
+      localStorage.removeItem('total');
 
-      msg.textContent = `¡Gracias! Pedido #${j.pedido_id} confirmado. Te contactamos para coordinar la entrega.`;
-      msg.style.display='block';
-      // Redirigimos al inicio luego de unos segundos
-      setTimeout(()=> location.href='index.html', 2200);
-    }catch(e){
-      alert('Error de red');
+      // redirigir al inicio
+      setTimeout(() => {
+        location.href = 'index.html';
+      }, 2000);
+    } catch (e) {
+      console.error(e);
+      alert('Error de red al confirmar el pedido.');
     }
+  }
+
+
+
+  // 💳 Pasarelas ficticias — ahora fuera del onclick ✅
+  function pagoTarjeta() {
+  const modal = document.getElementById('modal-tarjeta');
+  modal.style.display = 'flex';
+
+  const inputNumero = document.getElementById('numero-tarjeta');
+  const inputVto    = document.getElementById('vencimiento-tarjeta');
+  const inputCVV    = document.getElementById('cvv-tarjeta');
+  const form        = document.getElementById('form-tarjeta');
+
+  // Constantes de longitud
+  const CARD_DIGITS = 16; // 👈  esto a 16
+  const CVV_DIGITS  = 3;
+
+  // Cerrar modal
+  document.getElementById('cerrar-modal').onclick = () => {
+    modal.style.display = 'none';
   };
+
+    // Formatear número: sólo dígitos, máximo 16, en grupos de 4 con GUIONES
+  inputNumero.addEventListener('input', () => {
+    // quitamos todo lo que no sea dígito
+    let digits = inputNumero.value.replace(/\D/g, '').slice(0, CARD_DIGITS);
+
+    // armamos ####-####-####-####
+    const grupos = digits.match(/.{1,4}/g) || [];
+    inputNumero.value = grupos.join('-');
+  });
+
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+
+    // --- Validar número de tarjeta ---
+    const rawNumber = inputNumero.value.replace(/\D/g, ''); // sólo dígitos
+    if (rawNumber.length !== CARD_DIGITS) {
+      alert(`Número de tarjeta inválido. Debe tener exactamente ${CARD_DIGITS} dígitos.`);
+      inputNumero.focus();
+      return;
+    }
+
+    // --- Validar vencimiento (MM/AA) ---
+    const vto = inputVto.value.trim();
+    const match = /^(\d{2})\/(\d{2})$/.exec(vto);
+    if (!match) {
+      alert('Vencimiento inválido. Usá el formato MM/AA.');
+      inputVto.focus();
+      return;
+    }
+    const mes = parseInt(match[1], 10);
+    if (mes < 1 || mes > 12) {
+      alert('Mes de vencimiento inválido (debe ser 01 a 12).');
+      inputVto.focus();
+      return;
+    }
+
+    // --- Validar CVV ---
+    const cvv = inputCVV.value.trim();
+    if (!/^\d+$/.test(cvv) || cvv.length !== CVV_DIGITS) {
+      alert(`CVV inválido. Debe tener exactamente ${CVV_DIGITS} dígitos numéricos.`);
+      inputCVV.focus();
+      return;
+    }
+
+    // Si todo está OK:
+    modal.style.display = 'none';
+    alert('✅ Pago procesado con éxito.');
+
+    // 👉 recién ahora creamos el pedido en el backend
+    await crearPedidoEnServidor('Tarjeta');
+  };
+}
+
+  function pagoMP(){
+    if (!datosPedido) {
+      alert('Primero confirmá los datos del pedido.');
+      return;
+    }
+
+    alert('🔗 Redirigiendo a Mercado Pago... (simulación)');
+    // window.open('https://www.mercadopago.com.uy', '_blank');  // si querés, lo dejás
+
+    crearPedidoEnServidor('Mercado Pago');
+  }
+
+  function pagoTransferencia(){
+  if (!datosPedido) {
+    alert('Primero confirmá los datos del pedido.');
+    return;
+  }
+
+  alert('🏦 Transferencia a cuenta BROU 001-2345678.\nEnviá el comprobante por WhatsApp.');
+
+  crearPedidoEnServidor('Transferencia bancaria');
+}
+
+
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function() {
+  const authBox = document.getElementById('auth-box');
+  if (!authBox) return;
+
+  // --- Recuperar del almacenamiento local
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem('usuarioActual')) || null;
+  } catch(e) {
+    user = null;
+  }
+
+  // --- Verificar sesión con el backend
+  try {
+    const res = await fetch('http://localhost/Muebleria/backend/api.php?action=auth_me', {
+      credentials: 'include'
+    });
+    const data = await res.json();
+    if (data.authenticated && data.user) {
+      user = data.user;
+      localStorage.setItem('usuarioActual', JSON.stringify(user));
+    }
+  } catch(err) {
+    console.warn('No se pudo verificar la sesión con el backend', err);
+  }
+
+  // --- Mostrar según el estado
+  if (user) {
+    authBox.innerHTML = `
+      <span>👋 Hola, <strong>${user.nombre || user.email}</strong></span>
+      <button class="btn white" onclick="logout()">Cerrar sesión</button>
+    `;
+  } else {
+    authBox.innerHTML = `
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn white" href="register.html">Registrarse</a>
+    `;
+  }
+
+  // --- Cierre de sesión global
+  window.logout = async function() {
+    localStorage.removeItem('usuarioActual');
+    try {
+      await fetch('http://localhost/Muebleria/backend/api.php?action=auth_logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+    } catch(e) {}
+    location.href = 'login.html';
+  };
+});
 </script>
 
 </body>

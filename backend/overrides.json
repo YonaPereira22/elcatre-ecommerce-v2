@@ -1,0 +1,420 @@
+{
+  "overrides": {
+    "1": {
+      "id": 1,
+      "nombre": "Rack Para Tv",
+      "categoria": "living",
+      "precio": 4250,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_854359-MLU41839187643_052020-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 85 cm de ancho x 43 cm de profundidad x 78.5 cm de altura.\n\n- Fabricado en madera maciza de alta resistencia.\n\n- Incluye 2 puertas y 1 estante interno.\n\n- Formato tipo rack, ideal para TV o almacenamiento.\n\n- Color marrón claro con acabado rústico.",
+      "stock": true
+    },
+    "2": {
+      "id": 2,
+      "nombre": "Rack Tv Modular",
+      "categoria": "living",
+      "precio": 8700,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_790383-MLU78023125371_072024-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 180 cm de ancho x 42 cm de profundidad x 180 cm de altura.\n\n- Estructura fabricada en MDP de excelente calidad.\n\n- Cuenta con 6 estantes amplios para organización.\n\n- Formato tipo panel, ideal para sala o living.\n\n- Color marrón oscuro con diseño moderno.",
+      "stock": true
+    },
+    "3": {
+      "id": 3,
+      "nombre": "Tocador con Espejo y Luz",
+      "categoria": "camas",
+      "precio": 4500,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_824744-MLU54516367582_032023-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 45 cm de ancho x 143 cm de altura.\n\n- Fabricado en MDP con acabado color blanco.\n\n- Incluye espejo y sistema de iluminación incorporado.\n\n- Diseño compacto, ideal para dormitorio o vestidor.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "4": {
+      "id": 4,
+      "nombre": "Comoda  y Zapatera",
+      "categoria": "camas",
+      "precio": 3800,
+      "imagen": "https://http2.mlstatic.com/D_Q_NP_2X_743020-MLU31433481816_072019-E.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 62.5 cm de ancho x 40.6 cm de profundidad x 92 cm de altura.\n\n- Fabricada en placa de MDP con correderas metálicas.\n\n- Incluye 5 cajones amplios para almacenamiento.\n\n- Color Blanco con estilo clásico.\n\n- Requiere ensamblado e incluye manual detallado.",
+      "stock": true
+    },
+    "5": {
+      "id": 5,
+      "nombre": "Mueble de cocina.",
+      "categoria": "cocina",
+      "precio": 5300,
+      "imagen": "img/MuebleCocinaGrande.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 63 cm de ancho x 30 cm de profundidad x 195 cm de altura.\n\n- Fabricado en MDP de alta resistencia con acabado blanco.\n\n- Compuesto por 3 puertas, ideal para almacenamiento de cocina.\n\n- Formato panelero tipo alacena.\n\n- Requiere ensamblado, incluye manual detallado.",
+      "stock": true
+    },
+    "6": {
+      "id": 6,
+      "nombre": "Multiuso",
+      "categoria": "camas",
+      "precio": 2900,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_882669-MLA95388688927_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 46,2 cm de ancho x 28,5 cm de profundidad x 170 cm de altura.\n\n- Estructura y puertas fabricadas en MDP resistente.\n\n- Diseño multiuso con 2 puertas amplias para almacenamiento.\n\n- Formato tipo alacena, ideal para cocina o lavandería.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "7": {
+      "id": 7,
+      "nombre": "Kit de Cocina Bajo Mesada",
+      "categoria": "cocina",
+      "precio": 6500,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_965129-MLA88425530083_072025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 120 cm de ancho x 5 cm de profundidad x 77 cm de altura.\n\n- Con puertas de MDP.\n\n- Incluye mesada central, 3 puertas y 2 cajones funcionales.\n\n- Tiradores y correderas de plástico resistente.\n\n- Requiere ensamblado e incluye manual detallado.",
+      "stock": true
+    },
+    "8": {
+      "id": 8,
+      "nombre": "Ropero 3 Puertas",
+      "categoria": "camas",
+      "precio": 3560,
+      "imagen": "img/Ropero3.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 80 cm de ancho x 50 cm de profundidad x 180 cm de altura.\n\n- Fabricado en MDP resistente con acabado color terrano.\n\n- Incluye 3 puertas de apertura, 2 cajones y barral interno.\n\n- Diseño clásico sin espejo.\n\n- Requiere ensamblado e incluye manual detallado.",
+      "stock": true
+    },
+    "9": {
+      "id": 9,
+      "nombre": "Heladera ENXUTA",
+      "categoria": "electrodomesticos",
+      "precio": 18.5,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_845884-MLA94963802340_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 54.5 cm de ancho x 59 cm de profundidad x 170 cm de altura.\n\n- Capacidad total de 255 L (heladera 201 L + freezer 54 L).\n\n- Sistema de deshielo No Frost y eficiencia energética A.\n\n- Diseño de 2 puertas con congelador superior y estantes de vidrio.\n\n- Color blanco, con puertas reversibles y luz interior.",
+      "stock": true
+    },
+    "10": {
+      "id": 10,
+      "nombre": "Set Mesa Ratona",
+      "categoria": "living",
+      "precio": 3500,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_771329-MLA92280517996_092025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 50 cm de ancho x 52 cm de altura, diámetro 50 cm.\n\n- Estructura metálica con tapa de MDF y acabado satinado.\n\n- Diseño redondo de estilo nórdico con 3 patas.\n\n- Color negro elegante, ideal como mesa auxiliar o ratona.\n\n- Requiere ensamblado e incluye accesorios y manual.",
+      "stock": true
+    },
+    "11": {
+      "id": 11,
+      "nombre": "Sofa Moderno",
+      "categoria": "living",
+      "precio": 13,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_668652-MLA94947692970_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 190.5 cm de ancho x 79 cm de profundidad x 76 cm de altura.\n\n- Futón de 3 cuerpos reclinable, tapizado en tela símil lino color negro.\n\n- Patas de madera color tostado, estilo moderno.\n\n- Incluye 2 almohadones decorativos.\n\n- Diseño funcional, ideal para sala o dormitorio.",
+      "stock": true
+    },
+    "12": {
+      "id": 12,
+      "nombre": "Cristalero Aparador",
+      "categoria": "comedor",
+      "precio": 11900,
+      "imagen": "img/Crostalero.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 1.04 m de ancho x 42 cm de profundidad x 1.86 m de altura.\n\n- Fabricado en madera maciza de pino Elliotis.\n\n- Incluye 2 puertas y 3 estantes con capacidad de hasta 30 kg cada uno.\n\n- Acabado color cera nogal de estilo natural.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "13": {
+      "id": 13,
+      "nombre": "Mueble de Cocina",
+      "categoria": "cocina",
+      "precio": 7750,
+      "imagen": "img/Mueble horno chico.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 120 cm de ancho x 35 cm de profundidad x 172 cm de altura.\n\n- Estructura y puertas fabricadas en MDP resistente.\n\n- Incluye 1 cajón y múltiples compartimientos de almacenaje.\n\n- Acabado combinado en tonos Damasco, Ripado y Off White.\n\n- Requiere ensamblado e incluye manual detallado.",
+      "stock": true
+    },
+    "14": {
+      "id": 14,
+      "nombre": "Ropero 2 Puertas.",
+      "categoria": "camas",
+      "precio": 7500,
+      "imagen": "img/Ropero2P.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 101 cm de ancho x 53 cm de profundidad x 170 cm de altura.\n\n- Fabricado en madera maciza de pino taeda.\n\n- Incluye 2 puertas con bisagras, estantes internos y barral para colgar.\n\n- Color gris con diseño funcional y resistente.\n\n- Requiere ensamblado e incluye manual detallado.",
+      "stock": true
+    },
+    "15": {
+      "id": 15,
+      "nombre": "Smart TV ENXUTA 58\"",
+      "categoria": "electrodomesticos",
+      "precio": 19500,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_666135-MLA95210719812_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Pantalla LED de 58 pulgadas con resolución 4K Ultra HD.\n\n- Tecnología Smart TV con conectividad Wi-Fi y Bluetooth.\n\n- Incluye puertos HDMI y USB para múltiples dispositivos.\n\n- Compatible con HDR para mayor brillo y contraste.\n\n- Diseño moderno en color negro, ideal para cualquier ambiente.",
+      "stock": true
+    },
+    "16": {
+      "id": 16,
+      "nombre": "Juego de Comedor.",
+      "categoria": "comedor",
+      "precio": 13500,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_749344-MLA95223656096_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas de la mesa: 150 cm de largo, formato rectangular.\n\n- Fabricado íntegramente en madera de alta calidad.\n\n- Incluye 6 sillas a juego, estilo rústico/campestre.\n\n- Color nogal con acabado natural.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "17": {
+      "id": 17,
+      "nombre": "Juego de Comedor 4 Sillas.",
+      "categoria": "comedor",
+      "precio": 10500,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_755862-MLA95392447039_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas de la mesa: 120 cm de largo x 80 cm de ancho x 73 cm de altura.\n\n- Incluye 4 sillas de madera y polipropileno con diseño moderno.\n\n- Mesa rectangular fabricada en MDF lacado y madera.\n\n- Color blanco con estilo contemporáneo.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "18": {
+      "id": 18,
+      "nombre": "Juego de Comedor Tapizado.",
+      "categoria": "comedor",
+      "precio": 9500,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_687498-MLA89244974097_082025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas de la mesa: 90 cm de largo x 90 cm de ancho x 80 cm de altura.\n\n- Fabricada en MDP con diseño rectangular moderno.\n\n- Incluye 4 sillas de MDP con tapizado liso color gris.\n\n- Estilo contemporáneo, ideal para comedor o cocina.\n\n- Requiere ensamblado e incluye manual detallado.",
+      "stock": true
+    },
+    "19": {
+      "id": 19,
+      "nombre": "Cocina ENXUTA Combinada.",
+      "categoria": "cocina",
+      "precio": 12500,
+      "imagen": "img/Cocimachica.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 50 cm de ancho x 60 cm de profundidad x 85 cm de altura.\n\n- Cocina de pie a gas/eléctrica con 4 hornallas y encendido electrónico.\n\n- Horno con visor, luz interna, termostato y temporizador.\n\n- Estructura en acero inoxidable con rejillas de hierro.\n\n- Incluye tapa superior y patas de apoyo.",
+      "stock": true
+    },
+    "20": {
+      "id": 20,
+      "nombre": "Cocina ENXUTA 5 Hornallas.",
+      "categoria": "cocina",
+      "precio": 14000,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_997415-MLA89953326581_082025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 75 cm de ancho x 55 cm de profundidad x 87 cm de altura.\n\n- Cocina de pie a gas multigas con 5 hornallas.\n\n- Encendido electrónico y horno con visor frontal.\n\n- Diseño color gris con estructura resistente.\n\n- Incluye patas de apoyo para mayor estabilidad.",
+      "stock": true
+    },
+    "21": {
+      "id": 21,
+      "nombre": "Smart Tv ENXUTA 32\"\"",
+      "categoria": "electrodomesticos",
+      "precio": 8000,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_803494-MLA95382005197_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Pantalla LED de 32 pulgadas (73.15 cm x 8.81 cm x 43.34 cm).\n\n- Resolución HD (1366 × 768 px) con relación de aspecto 16:9.\n\n- Smart TV con sistema operativo Android Nougat y navegador web integrado.\n\n- Conectividad Wi-Fi, Ethernet, 2 puertos HDMI y 2 puertos USB.\n\n- Diseño color negro con sonido potente de 80 W y 4 parlantes.",
+      "stock": true
+    },
+    "22": {
+      "id": 22,
+      "nombre": "Heladera ENXUTA 2 Puertas",
+      "categoria": "electrodomesticos",
+      "precio": 32000,
+      "imagen": "img/Heladera2P.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 91 cm de ancho x 59 cm de profundidad x 177 cm de altura.\n\n- Capacidad total de 442 L con freezer side by side.\n\n- Tecnología Inverter y sistema No Frost con eficiencia energética A.\n\n- Panel digital con pantalla táctil y control de temperatura independiente.\n\n- Incluye 4 estantes de vidrio, 2 cajones en el freezer y fábrica de hielo integrada.",
+      "stock": true
+    },
+    "23": {
+      "id": 23,
+      "nombre": "Lavadora ENXUTA 6kg",
+      "categoria": "electrodomesticos",
+      "precio": 13,
+      "imagen": "img/Lavarropas5kg.png",
+      "descripcion": "",
+      "stock": true
+    },
+    "24": {
+      "id": 24,
+      "nombre": "Baul de Madera",
+      "categoria": "camas",
+      "precio": 3900,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_795793-MLU80460937836_112024-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 91 cm de profundidad x 48 cm de largo x 47 cm de altura.\n\n- Fabricado en madera maciza con acabado color blanco.\n\n- Diseño funcional tipo baúl para almacenamiento.\n\n- Estructura robusta y durable, sin ruedas.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "25": {
+      "id": 25,
+      "nombre": "Escritorio.",
+      "categoria": "oficina",
+      "precio": 3200,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_669826-MLA94957742660_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 120 cm de ancho x 45 cm de profundidad x 76 cm de altura.\n\n- Escritorio fabricado en MDF color blanco.\n\n- Incluye 1 cajón y 1 puerta para almacenamiento.\n\n- Diseño funcional y compacto, ideal para oficina o estudio.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "26": {
+      "id": 26,
+      "nombre": "Silla Gamer",
+      "categoria": "oficina",
+      "precio": 3400,
+      "imagen": "img/SillaGamer.png",
+      "descripcion": "Características del producto:\n\n- Medidas totales: 51 cm de ancho x 59 cm de profundidad x 119 cm de altura.\n\n- Tapizado en cuero sintético (PU leather) con relleno de espuma.\n\n- Respaldo de 78 cm de alto con soporte lumbar fijo y apoya cabeza.\n\n- Asiento regulable entre 43 cm y 53 cm de altura.\n\n- Estructura giratoria con ruedas y apoyabrazos ergonómicos.",
+      "stock": true
+    },
+    "27": {
+      "id": 27,
+      "nombre": "Lavarropas ENXUTA 10,5kg",
+      "categoria": "electrodomesticos",
+      "precio": 33,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_950841-MLA94968404692_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas estándar con capacidad de lavado de 10,5 kg.\n\n- Lavarropas automático de carga frontal con tecnología Inverter.\n\n- Velocidad de centrifugado de 1400 rpm para un secado eficiente.\n\n- Display digital con 15 programas de lavado y función de inicio diferido.\n\n- Tambor de acero inoxidable y sistema de bloqueo para niños.",
+      "stock": true
+    },
+    "28": {
+      "id": 28,
+      "nombre": "Set Sofá",
+      "categoria": "living",
+      "precio": 11610,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_659341-MLU83370468599_032025-F.webp",
+      "descripcion": "Características del producto:\n\n- Sillón individual de 3 cuerpos estilo minimalista.\n\n- Estructura en madera maciza con tapizado en chenille color negro.\n\n- Diseño moderno y elegante, ideal para sala o living.\n\n- Incluye mesa auxiliar a juego.\n\n- No requiere ensamblado.",
+      "stock": true
+    },
+    "29": {
+      "id": 29,
+      "nombre": "Sofá Cama",
+      "categoria": "living",
+      "precio": 10900,
+      "imagen": "https://http2.mlstatic.com/D_Q_NP_698426-MLU77683922128_072024-B.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 192 cm de ancho x 115 cm de profundidad x 88 cm de altura.\n\n- Sofá de 3 cuerpos con estructura robusta y diseño confortable.\n\n- Incluye almohadones decorativos.\n\n- Tapizado resistente, ideal para uso diario.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "30": {
+      "id": 30,
+      "nombre": "Ropero con Espejo",
+      "categoria": "camas",
+      "precio": 7500,
+      "imagen": "https://http2.mlstatic.com/D_Q_NP_903894-MLA95380784147_102025-B.webp",
+      "descripcion": "Características del producto:\n\n- Incluye 4 estantes y 4 boxes para organizar la ropa.\n\n- Dispone de espacio inferior para guardar calzados.\n\n- Incorpora espejo integrado en la estructura.\n\n- No posee cajones.\n\n- Requiere ensamblado sencillo.",
+      "stock": true
+    },
+    "31": {
+      "id": 31,
+      "nombre": "Mueble de Baño",
+      "categoria": "cocina",
+      "precio": 4900,
+      "imagen": "img/Image 31.jpg",
+      "descripcion": "Características del producto:\n\n- Mueble para baño tipo colgante fabricado en MDP resistente.\n\n- Color blanco-cartagena con bacha incluida en color blanco.\n\n- Incluye espejo y cuenta con un orificio para grifería.\n\n- Diseño moderno y funcional, sin ruedas.\n\n- No incluye grifería.",
+      "stock": true
+    },
+    "32": {
+      "id": 32,
+      "nombre": "Zapatera",
+      "categoria": "camas",
+      "precio": 2900,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_723035-MLA94973626052_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas estándar con capacidad para hasta 18 pares de zapatos.\n\n- Fabricado en MDP resistente color marrón oscuro.\n\n- Diseño moderno tipo gabinete con 3 estantes internos.\n\n- No incluye cajones, asiento ni espejo.\n\n- Estructura fija, no giratoria ni plegable.",
+      "stock": true
+    },
+    "33": {
+      "id": 33,
+      "nombre": "Termotanque ENXUTA 30L",
+      "categoria": "electrodomesticos",
+      "precio": 7900,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_957233-MLA94944573696_102025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 55.2 cm de altura x 38 cm de diámetro.\n\n- Termotanque eléctrico de 30 L de capacidad.\n\n- Potencia de 1.5 kW y voltaje de 220 V.\n\n- Montaje para apoyar con conexión de agua inferior.\n\n- Incluye válvula de seguridad, aislamiento térmico y protección anticorrosiva.",
+      "stock": true
+    },
+    "34": {
+      "id": 34,
+      "nombre": "Somier 2 Plazas",
+      "categoria": "camas",
+      "precio": 12400,
+      "imagen": "https://http2.mlstatic.com/D_Q_NP_770218-MLA95397942069_102025-B.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 190 cm de largo x 140 cm de ancho x 52 cm de altura.\n\n- Cama de 2 plazas con base de madera resistente.\n\n- Colchón de espuma de alta densidad con pillow top.\n\n- Soporta hasta 150 kg por persona y es antiácaros.\n\n- No incluye respaldo, cajones ni cama auxiliar.",
+      "stock": true
+    },
+    "-1760937040451": {
+      "id": -1760937040451,
+      "nombre": "Biblioteca",
+      "categoria": "oficina",
+      "precio": 1900,
+      "imagen": "https://f.fcdn.app/imgs/ed9f63/mulata.com.uy/mulauy/9240/webp/catalogo/PV-0753-CINZA_PV-0753-CINZA_1/480x480/estanteria-anita-biblioteca-multiuso-con-4-estantes-47-9-x-170-x-27-5-cm-cinza-estanteria-anita-biblioteca-multiuso-con-4-estantes-47-9-x-170-x-27-5-cm-cinza.jpg",
+      "descripcion": "Características del producto:\n\n- Medidas: 47,9 cm de ancho x 27,5 cm de profundidad x 170 cm de altura.\n\n- Fabricada en MDP resistente color gris (cinza).\n\n- Incluye 4 estantes amplios para organización o decoración.\n\n- Diseño multiuso tipo biblioteca o estantería.\n\n- Ideal para oficina, dormitorio o sala de estar.",
+      "stock": true
+    },
+    "-1760926934436": {
+      "id": -1760926934436,
+      "nombre": "Somier 1 Plaza",
+      "categoria": "camas",
+      "precio": 8900,
+      "imagen": "https://http2.mlstatic.com/D_Q_NP_618562-MLA94971102082_102025-B.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 190 cm de largo x 80 cm de ancho x 17 cm de altura.\n\n- Sommier de 1 plaza con base y patas de madera tipo europea.\n\n- Colchón de espuma extra firme y alta densidad.\n\n- Tapizado en poliéster, antiácaros y de diseño ortopédico.\n\n- Color negro elegante, sin respaldo ni ruedas.",
+      "stock": true
+    },
+    "-1760934086477": {
+      "id": -1760934086477,
+      "nombre": "Somier 1½ Plaza",
+      "categoria": "camas",
+      "precio": 9900,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_861580-MLA84537307800_052025-F.webp",
+      "descripcion": "Características del producto:\n\n- Medidas: 188 cm de largo x 110 cm de ancho x 40 cm de altura.\n\n- Sommier de 1½ plaza con base americana de madera.\n\n- Colchón de espuma de densidad 65 kg/m³ y firmeza media.\n\n- Tapizado en tela jaquard y poliéster, antiácaros y de alta densidad.\n\n- Color negro, sin respaldo ni ruedas.",
+      "stock": true
+    },
+    "-1760935137087": {
+      "id": -1760935137087,
+      "nombre": "Ropero 4 Puertas.",
+      "categoria": "camas",
+      "precio": 5000,
+      "imagen": "img/Ropero3P.png",
+      "descripcion": "Características del producto:\n\n- Medidas: 90,1 cm de ancho x 35 cm de profundidad x 172 cm de altura.\n\n- Fabricado en MDP con acabado en pintura UV.\n\n- Incluye 4 puertas y 2 cajones con rieles resistentes.\n\n- Tiradores de ABS duradero.\n\n- Diseño funcional y moderno para organización de ropa.",
+      "stock": true
+    },
+    "-1760935171347": {
+      "id": -1760935171347,
+      "nombre": "Papelera",
+      "categoria": "baño",
+      "precio": 1100,
+      "imagen": "https://f.fcdn.app/imgs/923342/mulata.com.uy/mulauy/732e/webp/catalogo/94538105_94538105_1/480x480/papelera-tramontina-brasil-con-pedal-de-acero-inoxidable-terminacion-pulida-y-balde-interno-de-5-l-papelera-tramontina-brasil-con-pedal-de-acero-inoxidable-terminacion-pulida-y-balde-interno-de-5-l.jpg",
+      "descripcion": "Características del producto:\n\n- Medidas: 20,5 cm de diámetro x 29 cm de altura.\n\n- Papelera de acero inoxidable AISI 430 con terminación pulida.\n\n- Sistema de apertura mediante pedal y balde plástico interno de 5 L.\n\n- Incluye asa de transporte para mayor comodidad.\n\n- Diseño resistente e higiénico, ideal para baño o cocina.",
+      "stock": true
+    },
+    "-1760935358151": {
+      "id": -1760935358151,
+      "nombre": "Sillón Flex",
+      "categoria": "living",
+      "precio": 3200,
+      "imagen": "https://f.fcdn.app/imgs/05f61b/mulata.com.uy/mulauy/f3e4/webp/catalogo/SILLA-FLEX-NEGRO_SILLA-FLEX-NEGRO_1/480x480/sillon-individual-flex-negro-de-diseno-nordico-con-estructura-de-madera-ideal-para-living-dormitorio-u-oficina-sillon-individual-flex-negro-de-diseno-nordico-con-estructura-de-madera-ideal-para-living-dormitorio-u-oficina.jpg",
+      "descripcion": "Características del producto:\n\n- Medidas estándar con diseño moderno y elegante.\n\n- Estructura firme de madera con tapizado color negro.\n\n- Respaldo alto y asiento amplio para máximo confort.\n\n- Ideal para living, dormitorio u oficina.\n\n- Se entrega desarmado con kit de fácil armado.",
+      "stock": true
+    }
+  },
+  "added": [
+    {
+      "id": -1760926934436,
+      "nombre": "Nuevo producto",
+      "categoria": "comedor",
+      "precio": "",
+      "imagen": "",
+      "descripcion": "",
+      "activo": 1
+    },
+    {
+      "id": -1760934086477,
+      "nombre": "Nuevo producto",
+      "categoria": "comedor",
+      "precio": "",
+      "imagen": "",
+      "descripcion": "",
+      "activo": 1
+    },
+    {
+      "id": -1760935137087,
+      "nombre": "Nuevo producto",
+      "categoria": "comedor",
+      "precio": "",
+      "imagen": "",
+      "descripcion": "",
+      "activo": 1
+    },
+    {
+      "id": -1760935171347,
+      "nombre": "Nuevo producto",
+      "categoria": "comedor",
+      "precio": "",
+      "imagen": "",
+      "descripcion": "",
+      "activo": 1
+    },
+    {
+      "id": -1760935358151,
+      "nombre": "Nuevo producto",
+      "categoria": "comedor",
+      "precio": "",
+      "imagen": "",
+      "descripcion": "",
+      "activo": 1
+    },
+    {
+      "id": -1760937040451,
+      "nombre": "Nuevo producto",
+      "categoria": "comedor",
+      "precio": "",
+      "imagen": "",
+      "descripcion": "",
+      "activo": 1
+    }
+  ]
+}
