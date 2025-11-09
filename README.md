@@ -1,4 +1,4 @@
-# Mueblería – Prototipo (Entrega 1)
+# Mueblería – Prototipo (Entrega Final)
 - **Frontend:** HTML/CSS/JS (catálogo, filtros, carrito básico).
 - **Docs:** en carpeta `/docs` (informe, entrevistas, bitácora, diagramas).
 - **Cómo navegar:** abrir `frontend/index.html`; el carrito está en `frontend/carrito.html`.
